@@ -1,0 +1,32 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# testing
+/coverage
+
+# git
+.git
+.gitignore
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+
+# env files
+.env*
+
+# vercel
+.vercel
+
+# IDE's, Code editor's
+/.idea/
