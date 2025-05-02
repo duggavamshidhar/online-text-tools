@@ -1,3 +1,4 @@
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import {
   Sidebar,
   SidebarContent,
@@ -19,7 +20,6 @@ import {
   TwitterIcon
 } from 'lucide-react'
 import Link from 'next/link'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 
 export function AppSidebar() {
   const contactItems = [

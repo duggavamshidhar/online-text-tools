@@ -1,9 +1,9 @@
+import { ThemeProvider } from '@/components/theme-provider'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
-import './globals.css'
 import React from 'react'
-import { ThemeProvider } from '@/components/theme-provider'
+import './globals.css'
 
 const poppins = Poppins({
   subsets: ['latin'],
