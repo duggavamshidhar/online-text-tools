@@ -2,6 +2,7 @@ import { AppSidebar } from '@/components/app-sidebar'
 import { ModeToggle } from '@/components/ui/mode-toggle'
 import { Separator } from '@/components/ui/separator'
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import { Toaster } from '@/components/ui/sonner'
 import React from 'react'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -18,6 +19,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {children}
         </section>
       </main>
+      <Toaster />
     </SidebarProvider>
   )
 }
