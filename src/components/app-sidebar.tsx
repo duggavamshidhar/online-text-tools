@@ -10,7 +10,15 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem
 } from '@/components/ui/sidebar'
-import { ChevronRight, GithubIcon, Home, LinkedinIcon } from 'lucide-react'
+import {
+  ChevronRight,
+  GithubIcon,
+  Home,
+  InstagramIcon,
+  LinkedinIcon,
+  MessageSquareIcon,
+  TwitterIcon
+} from 'lucide-react'
 import Link from 'next/link'
 
 export function AppSidebar() {
@@ -25,6 +33,24 @@ export function AppSidebar() {
       title: 'LinkedIn',
       url: 'https://linkedin.com/in/duggavamshidhar/',
       icon: LinkedinIcon,
+      targetBlank: true
+    },
+    {
+      title: 'X (Twitter)',
+      url: 'https://x.com/duggavamshidhar/',
+      icon: TwitterIcon,
+      targetBlank: true
+    },
+    {
+      title: 'Instagram',
+      url: 'https://instagram.com/duggavamshidhar/',
+      icon: InstagramIcon,
+      targetBlank: true
+    },
+    {
+      title: 'Bluesky',
+      url: 'https://bsky.app/profile/duggavamshidhar.bsky.social',
+      icon: MessageSquareIcon,
       targetBlank: true
     }
   ]
