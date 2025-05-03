@@ -3,18 +3,44 @@
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { Clipboard, Download, ListRestart, Scissors } from 'lucide-react'
+import { ClipboardCopy, ClipboardPaste, Download, ListRestart, Scissors } from 'lucide-react'
 import { useState } from 'react'
 import { toast } from 'sonner'
 
 export default function Page() {
   const [text, setText] = useState<string>('')
+  const [cursorPosition, setCursorPosition] = useState<{ start: number; end: number }>({
+    start: 0,
+    end: 0
+  })
+
+  function handleCursorPosition(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    const { selectionStart, selectionEnd } = e.target
+    setCursorPosition({ start: selectionStart, end: selectionEnd })
+  }
 
   function copyToClipboard() {
     navigator.clipboard
       .writeText(text)
       .then(() => toast.success('Copied to clipboard successfully.'))
   }
+
+  function pasteToClipboard() {
+    navigator.clipboard
+      .readText()
+      .then((clipboardText) => {
+        const beforeCursor = text.slice(0, cursorPosition.start)
+        const afterCursor = text.slice(cursorPosition.start)
+        const updatedText = beforeCursor + clipboardText + afterCursor
+        setText(updatedText)
+        const newCursorPosition = beforeCursor.length + clipboardText.length
+        setCursorPosition({ start: newCursorPosition, end: newCursorPosition })
+      })
+      .catch((err) => {
+        console.error('Failed to read clipboard contents: ', err)
+      })
+  }
+
   function cutToClipboard() {
     navigator.clipboard
       .writeText(text)
@@ -85,11 +111,28 @@ export default function Page() {
                     className="cursor-pointer"
                     size="icon"
                   >
-                    <Clipboard size="28" />
+                    <ClipboardCopy size="28" />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>Copy to clipboard</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="cursor-pointer"
+                    size="icon"
+                    onClick={pasteToClipboard}
+                  >
+                    <ClipboardPaste size="28" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Paste</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -117,6 +160,7 @@ export default function Page() {
               placeholder="Enter your text here..."
               value={text}
               onChange={(e) => setText(e.target.value)}
+              onSelect={handleCursorPosition}
             />
           </div>
         </div>
