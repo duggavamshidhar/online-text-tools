@@ -29,6 +29,7 @@ export default function NotepadComponent() {
     function handleCharacterCount() {
       setCharacterCount(text.length)
     }
+
     function handleWordCount() {
       const words = text
         .trim()
@@ -36,6 +37,7 @@ export default function NotepadComponent() {
         .filter((word) => word.length > 0)
       setWordCount(words.length)
     }
+
     handleCharacterCount()
     handleWordCount()
   }, [text])
