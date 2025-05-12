@@ -10,7 +10,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem
 } from '@/components/ui/sidebar'
-import { ChevronRight, GithubIcon, Home, LinkedinIcon } from 'lucide-react'
+import { ChevronRight, GithubIcon, Home } from 'lucide-react'
 import Link from 'next/link'
 
 export function AppSidebar() {
@@ -19,12 +19,6 @@ export function AppSidebar() {
       title: 'GitHub',
       url: 'https://github.com/duggavamshidhar/online-text-tools',
       icon: GithubIcon,
-      targetBlank: true
-    },
-    {
-      title: 'LinkedIn',
-      url: 'https://linkedin.com/in/duggavamshidhar/',
-      icon: LinkedinIcon,
       targetBlank: true
     }
   ]
