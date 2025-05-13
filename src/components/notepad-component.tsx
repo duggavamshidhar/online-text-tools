@@ -13,7 +13,7 @@ import {
   Scissors,
   WholeWord
 } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 export default function NotepadComponent() {
