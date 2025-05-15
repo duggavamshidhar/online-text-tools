@@ -17,13 +17,13 @@ export function AppSidebar() {
   const contactItems = [
     {
       title: 'GitHub',
-      url: 'https://github.com/duggavamshidhar/online-text-tools',
+      url: 'https://github.com/duggavamshidhar/online-text-tools/',
       icon: GithubIcon,
       targetBlank: true
     },
     {
       title: 'LinkedIn',
-      url: 'https://linkedin.com/in/duggavamshidhar/online-text-tools',
+      url: 'https://linkedin.com/in/duggavamshidhar/',
       icon: LinkedinIcon,
       targetBlank: true
     }
