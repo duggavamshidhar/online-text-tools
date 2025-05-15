@@ -10,7 +10,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem
 } from '@/components/ui/sidebar'
-import { ChevronRight, GithubIcon, Home } from 'lucide-react'
+import { CaseSensitive, ChevronRight, GithubIcon, Home, LinkedinIcon } from 'lucide-react'
 import Link from 'next/link'
 
 export function AppSidebar() {
@@ -20,6 +20,21 @@ export function AppSidebar() {
       url: 'https://github.com/duggavamshidhar/online-text-tools',
       icon: GithubIcon,
       targetBlank: true
+    },
+    {
+      title: 'LinkedIn',
+      url: 'https://linkedin.com/in/duggavamshidhar/online-text-tools',
+      icon: LinkedinIcon,
+      targetBlank: true
+    }
+  ]
+
+  const textToolsItems = [
+    {
+      title: 'Case Converter',
+      url: 'case-converter',
+      icon: CaseSensitive,
+      targetBlank: false
     }
   ]
   return (
@@ -37,6 +52,33 @@ export function AppSidebar() {
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+              <Collapsible defaultOpen className="group/collapsible">
+                <SidebarMenuItem>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuButton className="flex w-full cursor-pointer items-center justify-between">
+                      Text Tools
+                      <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
+                    </SidebarMenuButton>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      {textToolsItems.map((item) => (
+                        <SidebarMenuSubItem key={item.title}>
+                          <SidebarMenuButton asChild>
+                            <Link
+                              href={`/text-tools/${item.url}`}
+                              target={item.targetBlank ? '_blank' : '_self'}
+                            >
+                              {item.icon !== null && <item.icon />}
+                              <span>{item.title}</span>
+                            </Link>
+                          </SidebarMenuButton>
+                        </SidebarMenuSubItem>
+                      ))}
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </SidebarMenuItem>
+              </Collapsible>
               <Collapsible defaultOpen className="group/collapsible">
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
