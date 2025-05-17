@@ -27,15 +27,20 @@ export default function NotepadComponent() {
 
   useEffect(() => {
     function handleCharacterCount() {
-      setCharacterCount(text.length)
+      const finalCharacterArray: string[] = text.split('')
+      setCharacterCount(finalCharacterArray.length)
     }
 
     function handleWordCount() {
-      const words = text
-        .trim()
-        .split(/\s+/)
-        .filter((word) => word.length > 0)
-      setWordCount(words.length)
+      const receivedText = text.split(' ')
+      const finalWordArray: string[] = []
+      for (let i: number = 0; i < receivedText.length; i++) {
+        if (receivedText[i] === ' ' || receivedText[i] === '') {
+          continue
+        }
+        finalWordArray.push(receivedText[i])
+      }
+      setWordCount(finalWordArray.length)
     }
 
     handleCharacterCount()
