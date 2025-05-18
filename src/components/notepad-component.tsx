@@ -60,7 +60,7 @@ export default function NotepadComponent() {
       id: 3,
       toolTipContent: 'Paste',
       icon: ClipboardPaste,
-      onClick: () => pasteToClipboard()
+      onClick: () => pasteFromClipboard()
     },
     {
       id: 4,
@@ -103,7 +103,7 @@ export default function NotepadComponent() {
       .then(() => toast.success('Copied to clipboard successfully.'))
   }
 
-  function pasteToClipboard() {
+  function pasteFromClipboard() {
     navigator.clipboard
       .readText()
       .then((clipboardText) => {
@@ -114,8 +114,8 @@ export default function NotepadComponent() {
         const newCursorPosition = beforeCursor.length + clipboardText.length
         setCursorPosition({ start: newCursorPosition, end: newCursorPosition })
       })
-      .catch((err) => {
-        console.error('Failed to read clipboard contents: ', err)
+      .catch(() => {
+        toast.error('Failed to paste from clipboard.')
       })
   }
 
@@ -128,6 +128,10 @@ export default function NotepadComponent() {
 
   function resetTextArea() {
     setText('')
+    setCursorPosition({ start: 0, end: 0 })
+    setWordCount(0)
+    setCharacterCount(0)
+    toast.success('Text area has been reset.')
   }
 
   function downloadAsFile() {
