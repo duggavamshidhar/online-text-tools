@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import {
-  CaseLower,
   ClipboardCopy,
   ClipboardPaste,
   Download,
@@ -24,6 +23,52 @@ export default function NotepadComponent() {
   })
   const [wordCount, setWordCount] = useState<number>(0)
   const [characterCount, setCharacterCount] = useState<number>(0)
+  const toolBarLeftItems = [
+    {
+      id: 0,
+      toolTipContent: 'Character count',
+      icon: WholeWord,
+      dataVar: characterCount
+    },
+    {
+      id: 1,
+      toolTipContent: 'Word count',
+      icon: WholeWord,
+      dataVar: wordCount
+    }
+  ]
+  const toolBarRightItems = [
+    {
+      id: 0,
+      toolTipContent: 'Download as text file',
+      icon: Download,
+      onClick: () => downloadAsFile()
+    },
+    {
+      id: 1,
+      toolTipContent: 'Cut',
+      icon: Scissors,
+      onClick: () => cutToClipboard()
+    },
+    {
+      id: 2,
+      toolTipContent: 'Copy to clipboard',
+      icon: ClipboardCopy,
+      onClick: () => copyToClipboard()
+    },
+    {
+      id: 3,
+      toolTipContent: 'Paste',
+      icon: ClipboardPaste,
+      onClick: () => pasteToClipboard()
+    },
+    {
+      id: 4,
+      toolTipContent: 'Reset',
+      icon: ListRestart,
+      onClick: () => resetTextArea()
+    }
+  ]
 
   useEffect(() => {
     function handleCharacterCount() {
@@ -104,131 +149,52 @@ export default function NotepadComponent() {
         <div className="flex flex-col gap-y-2">
           <div className="flex w-full items-center justify-between rounded-xl border p-1">
             <div className="flex gap-x-1">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      className="flex w-auto justify-between gap-1 p-2"
-                      variant="outline"
-                      size="icon"
-                    >
-                      <CaseLower size="28" />
-                      <span>
-                        <Badge variant="secondary">{characterCount}</Badge>
-                      </span>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Character count</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      className="flex w-auto justify-between gap-1 p-2"
-                      variant="outline"
-                      size="icon"
-                    >
-                      <WholeWord size="28" />
-                      <span>
-                        <Badge variant="secondary">{wordCount}</Badge>
-                      </span>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Word count</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+              {toolBarLeftItems.map((item) => {
+                return (
+                  <TooltipProvider key={item.id}>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          className="flex w-auto cursor-pointer justify-between gap-1 p-2"
+                          variant="outline"
+                          size="icon"
+                        >
+                          <item.icon size="28" />
+                          <span>
+                            <Badge variant="secondary">{item.dataVar}</Badge>
+                          </span>
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{item.toolTipContent}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                )
+              })}
             </div>
             <div className="flex gap-x-1">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      onClick={downloadAsFile}
-                      variant="outline"
-                      className="cursor-pointer"
-                      size="icon"
-                    >
-                      <Download size="28" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Download as text file</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      onClick={cutToClipboard}
-                      variant="outline"
-                      className="cursor-pointer"
-                      size="icon"
-                    >
-                      <Scissors size="28" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Cut</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      onClick={copyToClipboard}
-                      variant="outline"
-                      className="cursor-pointer"
-                      size="icon"
-                    >
-                      <ClipboardCopy size="28" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Copy to clipboard</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className="cursor-pointer"
-                      size="icon"
-                      onClick={pasteToClipboard}
-                    >
-                      <ClipboardPaste size="28" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Paste</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      onClick={resetTextArea}
-                      variant="outline"
-                      className="cursor-pointer"
-                      size="icon"
-                    >
-                      <ListRestart size="28" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Reset</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+              {toolBarRightItems.map((item) => {
+                return (
+                  <TooltipProvider key={item.id}>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          onClick={item.onClick}
+                          variant="outline"
+                          className="cursor-pointer"
+                          size="icon"
+                        >
+                          <item.icon size="28" />
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{item.toolTipContent}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                )
+              })}
             </div>
           </div>
           <div>
