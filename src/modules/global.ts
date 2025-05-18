@@ -38,9 +38,7 @@ export function resetTextArea(): void {
 }
 
 export function downloadAsFile(text: string, fileName: string = 'myFile.txt') {
-  const blobPart: BlobPart[] = text.split('')
-  console.log(blobPart)
-  const blob = new Blob(blobPart, { type: 'text/plain' })
+  const blob = new Blob([text], { type: 'text/plain' })
   const createLink = document.createElement('a')
   createLink.download = fileName
   createLink.href = URL.createObjectURL(blob)
