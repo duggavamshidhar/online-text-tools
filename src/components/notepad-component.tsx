@@ -6,145 +6,89 @@ import { Textarea } from '@/components/ui/textarea'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import {
   ClipboardCopy,
-  ClipboardPaste,
   Download,
   ListRestart,
+  Minus,
   Scissors,
-  WholeWord
+  WholeWord,
+  WrapText
 } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
-import { toast } from 'sonner'
+import {
+  copyToClipboard,
+  cutToClipboard,
+  downloadAsFile,
+  handleCharacterCount,
+  handleLineCount,
+  handleSentenceCount,
+  handleWordCount,
+  resetTextArea
+} from '@/modules/global'
 
 export default function NotepadComponent() {
   const [text, setText] = useState<string>('')
-  const [cursorPosition, setCursorPosition] = useState<{ start: number; end: number }>({
-    start: 0,
-    end: 0
-  })
   const [wordCount, setWordCount] = useState<number>(0)
   const [characterCount, setCharacterCount] = useState<number>(0)
+  const [sentenceCount, setSentenceCount] = useState<number>(0)
+  const [lineCount, setLineCount] = useState<number>(0)
   const toolBarLeftItems = [
     {
-      id: 0,
       toolTipContent: 'Character count',
       icon: WholeWord,
       dataVar: characterCount
     },
     {
-      id: 1,
       toolTipContent: 'Word count',
       icon: WholeWord,
       dataVar: wordCount
+    },
+    {
+      toolTipContent: 'Sentence count',
+      icon: Minus,
+      dataVar: sentenceCount
+    },
+    {
+      toolTipContent: 'Line count',
+      icon: WrapText,
+      dataVar: lineCount
     }
   ]
   const toolBarRightItems = [
     {
-      id: 0,
       toolTipContent: 'Download as text file',
       icon: Download,
-      onClick: () => downloadAsFile()
+      onClick: () => downloadAsFile(text)
     },
     {
-      id: 1,
       toolTipContent: 'Cut',
       icon: Scissors,
-      onClick: () => cutToClipboard()
+      onClick: () => {
+        cutToClipboard(text)
+        setText('')
+      }
     },
     {
-      id: 2,
       toolTipContent: 'Copy to clipboard',
       icon: ClipboardCopy,
-      onClick: () => copyToClipboard()
+      onClick: () => copyToClipboard(text)
     },
+
     {
-      id: 3,
-      toolTipContent: 'Paste',
-      icon: ClipboardPaste,
-      onClick: () => pasteFromClipboard()
-    },
-    {
-      id: 4,
       toolTipContent: 'Reset',
       icon: ListRestart,
-      onClick: () => resetTextArea()
+      onClick: () => {
+        resetTextArea()
+        setText('')
+      }
     }
   ]
 
   useEffect(() => {
-    function handleCharacterCount() {
-      const finalCharacterArray: string[] = text.split('')
-      setCharacterCount(finalCharacterArray.length)
-    }
-
-    function handleWordCount() {
-      const receivedText = text.split(' ')
-      const finalWordArray: string[] = []
-      for (let i: number = 0; i < receivedText.length; i++) {
-        if (receivedText[i] === ' ' || receivedText[i] === '') {
-          continue
-        }
-        finalWordArray.push(receivedText[i])
-      }
-      setWordCount(finalWordArray.length)
-    }
-
-    handleCharacterCount()
-    handleWordCount()
+    setCharacterCount(handleCharacterCount(text))
+    setWordCount(handleWordCount(text))
+    setSentenceCount(handleSentenceCount(text))
+    setLineCount(handleLineCount(text))
   }, [text])
-
-  function handleCursorPosition(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    const { selectionStart, selectionEnd } = e.target
-    setCursorPosition({ start: selectionStart, end: selectionEnd })
-  }
-
-  function copyToClipboard() {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => toast.success('Copied to clipboard successfully.'))
-  }
-
-  function pasteFromClipboard() {
-    navigator.clipboard
-      .readText()
-      .then((clipboardText) => {
-        const beforeCursor = text.slice(0, cursorPosition.start)
-        const afterCursor = text.slice(cursorPosition.start)
-        const updatedText = beforeCursor + clipboardText + afterCursor
-        setText(updatedText)
-        const newCursorPosition = beforeCursor.length + clipboardText.length
-        setCursorPosition({ start: newCursorPosition, end: newCursorPosition })
-      })
-      .catch(() => {
-        toast.error('Failed to paste from clipboard.')
-      })
-  }
-
-  function cutToClipboard() {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => toast.success('Copied to clipboard successfully.'))
-      .finally(() => setText(''))
-  }
-
-  function resetTextArea() {
-    setText('')
-    setCursorPosition({ start: 0, end: 0 })
-    setWordCount(0)
-    setCharacterCount(0)
-    toast.success('Text area has been reset.')
-  }
-
-  function downloadAsFile() {
-    const blobPart: BlobPart[] = text.split('')
-    console.log(blobPart)
-    const blob = new Blob(blobPart, { type: 'text/plain' })
-    const createLink = document.createElement('a')
-    createLink.download = 'myFile.txt'
-    createLink.href = URL.createObjectURL(blob)
-    createLink.click()
-    toast.success('Your file is downloading...')
-    URL.revokeObjectURL(createLink.href)
-  }
 
   return (
     <>
@@ -153,9 +97,9 @@ export default function NotepadComponent() {
         <div className="flex flex-col gap-y-2">
           <div className="flex w-full items-center justify-between rounded-xl border p-1">
             <div className="flex gap-x-1">
-              {toolBarLeftItems.map((item) => {
+              {toolBarLeftItems.map((item, index) => {
                 return (
-                  <TooltipProvider key={item.id}>
+                  <TooltipProvider key={index}>
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <Button
@@ -178,9 +122,9 @@ export default function NotepadComponent() {
               })}
             </div>
             <div className="flex gap-x-1">
-              {toolBarRightItems.map((item) => {
+              {toolBarRightItems.map((item, index) => {
                 return (
-                  <TooltipProvider key={item.id}>
+                  <TooltipProvider key={index}>
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <Button
@@ -207,7 +151,6 @@ export default function NotepadComponent() {
               placeholder="Enter your text here..."
               value={text}
               onChange={(e) => setText(e.target.value)}
-              onSelect={handleCursorPosition}
             />
           </div>
         </div>
