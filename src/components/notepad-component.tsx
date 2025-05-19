@@ -1,7 +1,6 @@
 'use client'
 
 import { Textarea } from '@/components/ui/textarea'
-import { ClipboardCopy, Download, ListRestart, Scissors } from 'lucide-react'
 import React, { useState } from 'react'
 import {
   copyToClipboard,
@@ -23,12 +22,12 @@ export default function NotepadComponent() {
   const toolBarItems = [
     {
       toolTipContent: 'Download as text file',
-      icon: Download,
+      label: 'Download as text file',
       onClick: () => downloadAsFile(text)
     },
     {
       toolTipContent: 'Cut',
-      icon: Scissors,
+      label: 'Cut',
       onClick: () => {
         cutToClipboard(text)
         setText('')
@@ -36,12 +35,12 @@ export default function NotepadComponent() {
     },
     {
       toolTipContent: 'Copy to clipboard',
-      icon: ClipboardCopy,
+      label: 'Copy',
       onClick: () => copyToClipboard(text)
     },
     {
       toolTipContent: 'Reset',
-      icon: ListRestart,
+      label: 'Reset',
       onClick: () => {
         resetTextArea()
         setText('')

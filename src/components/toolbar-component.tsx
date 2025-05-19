@@ -4,7 +4,7 @@ import React from 'react'
 
 interface ToolbarItem {
   toolTipContent: string
-  icon: React.ElementType
+  label: string
   onClick: () => void
 }
 
@@ -15,7 +15,7 @@ interface NotepadToolbarProps {
 export default function ToolbarComponent({ items }: NotepadToolbarProps) {
   return (
     <div className="rounded-xl border p-1">
-      <div className="flex w-full justify-end overflow-x-auto py-0 [&::-webkit-scrollbar]:hidden">
+      <div className="flex w-full overflow-x-auto py-0 [&::-webkit-scrollbar]:hidden">
         {items.map((item, index) => (
           <TooltipProvider key={index}>
             <Tooltip>
@@ -26,7 +26,7 @@ export default function ToolbarComponent({ items }: NotepadToolbarProps) {
                   size="icon"
                   className="mx-0.5 flex w-auto items-center gap-1 p-2"
                 >
-                  <item.icon className="h-6 w-6" />
+                  <span className="font-normal">{item.label}</span>
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
