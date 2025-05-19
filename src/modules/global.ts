@@ -16,7 +16,7 @@ export function handleSentenceCount(text: string): number {
 }
 
 export function handleLineCount(text: string): number {
-  return text.split('\n').length
+  return text.split('\n').filter((line) => line.trim().length > 0).length
 }
 
 export function copyToClipboard(text: string): void {

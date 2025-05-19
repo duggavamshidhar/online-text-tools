@@ -95,7 +95,7 @@ export default function NotepadComponent() {
       <div className="mx-auto flex max-w-3xl flex-col gap-y-2">
         <div className="px-0.5 text-2xl font-semibold">Notepad</div>
         <div className="flex flex-col gap-y-2">
-          <div className="flex w-full items-center justify-between rounded-xl border p-1">
+          <div className="flex w-full items-center justify-between gap-x-1 overflow-x-auto rounded-xl border p-1 [&::-webkit-scrollbar]:hidden">
             <div className="flex gap-x-1">
               {toolBarLeftItems.map((item, index) => {
                 return (
