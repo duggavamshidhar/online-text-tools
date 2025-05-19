@@ -4,6 +4,10 @@ export function handleCharacterCount(text: string): number {
   return text.length
 }
 
+export function handleCharacterCountWithSpaces(text: string): number {
+  return text.replace(' ', '').length
+}
+
 export function handleWordCount(text: string): number {
   return text
     .trim()
