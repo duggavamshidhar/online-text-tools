@@ -24,7 +24,7 @@ export default function ToolbarComponent({ items }: NotepadToolbarProps) {
                   onClick={item.onClick}
                   variant="outline"
                   size="icon"
-                  className="mx-0.5 flex w-auto items-center gap-1 p-2"
+                  className="mx-0.5 flex w-auto cursor-pointer items-center gap-1 p-2"
                 >
                   <span className="font-normal">{item.label}</span>
                 </Button>
