@@ -39,14 +39,14 @@ export default function CharacterCountComponent(props: CharacterCountProps) {
   }, [props])
 
   return (
-    <div className="overflow-x-auto rounded-xl border p-1 [&::-webkit-scrollbar]:hidden">
-      <div className="flex w-full items-center gap-x-1">
+    <div className="rounded-xl border p-1">
+      <div className="flex w-full overflow-x-auto py-0 [&::-webkit-scrollbar]:hidden">
         {toolBarItems.map((item, index) => (
           <TooltipProvider key={index}>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
-                  className="flex w-auto items-center gap-1 p-2"
+                  className="mx-0.5 flex w-auto items-center gap-1 p-2"
                   variant="outline"
                   size="icon"
                 >
