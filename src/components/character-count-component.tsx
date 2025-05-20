@@ -39,8 +39,8 @@ export default function CharacterCountComponent(props: CharacterCountProps) {
   }, [props])
 
   return (
-    <div className="rounded-xl border p-1">
-      <div className="flex w-full overflow-x-auto py-0 [&::-webkit-scrollbar]:hidden">
+    <div className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden">
+      <div className="inline-flex w-full min-w-max justify-center">
         {toolBarItems.map((item, index) => (
           <TooltipProvider key={index}>
             <Tooltip>

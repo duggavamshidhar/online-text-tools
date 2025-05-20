@@ -51,7 +51,7 @@ export default function NotepadComponent() {
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-y-2">
       <div className="px-0.5 text-2xl font-semibold">Notepad</div>
-      <div className="flex flex-col gap-y-2">
+      <div className="flex flex-col gap-y-1">
         <ToolbarComponent items={toolBarItems} />
         <Textarea
           className="min-h-[400px]"
