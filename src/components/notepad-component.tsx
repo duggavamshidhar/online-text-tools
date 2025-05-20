@@ -18,7 +18,6 @@ import ToolbarComponent from '@/components/toolbar-component'
 
 export default function NotepadComponent() {
   const [text, setText] = useState<string>('')
-
   const toolBarItems = [
     {
       toolTipContent: 'Download as text file',
@@ -52,19 +51,20 @@ export default function NotepadComponent() {
     <div className="mx-auto flex max-w-4xl flex-col gap-y-2">
       <div className="px-0.5 text-2xl font-semibold">Notepad</div>
       <div className="flex flex-col gap-y-1">
-        <ToolbarComponent items={toolBarItems} />
+        <ToolbarComponent items={toolBarItems}>
+          <CharacterCountComponent
+            characterCount={handleCharacterCount(text)}
+            characterCountWithoutSpaces={handleCharacterCountWithSpaces(text)}
+            wordCount={handleWordCount(text)}
+            sentenceCount={handleSentenceCount(text)}
+            lineCount={handleLineCount(text)}
+          />
+        </ToolbarComponent>
         <Textarea
           className="min-h-[400px]"
           placeholder="Enter your text here..."
           value={text}
           onChange={(e) => setText(e.target.value)}
-        />
-        <CharacterCountComponent
-          characterCount={handleCharacterCount(text)}
-          characterCountWithoutSpaces={handleCharacterCountWithSpaces(text)}
-          wordCount={handleWordCount(text)}
-          sentenceCount={handleSentenceCount(text)}
-          lineCount={handleLineCount(text)}
         />
       </div>
     </div>
