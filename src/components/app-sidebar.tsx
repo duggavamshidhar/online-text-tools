@@ -1,18 +1,13 @@
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubItem
+  SidebarMenu
 } from '@/components/ui/sidebar'
-import { ChevronRight, Home } from 'lucide-react'
-import Link from 'next/link'
 import * as React from 'react'
+import SubmenuCollapsibleComponent from '@/components/submenu-collapsible-component'
+import SubmenuComponent from '@/components/submenu-component'
 
 interface menuItems {
   title: string
@@ -25,7 +20,6 @@ export function AppSidebar() {
     {
       title: 'GitHub',
       url: 'https://github.com/duggavamshidhar/online-text-tools/',
-
       targetBlank: true
     },
     {
@@ -34,7 +28,6 @@ export function AppSidebar() {
       targetBlank: true
     }
   ]
-
   const menuToolsItems: menuItems[] = [
     {
       title: 'Case Converter',
@@ -42,6 +35,7 @@ export function AppSidebar() {
       targetBlank: false
     }
   ]
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -49,69 +43,9 @@ export function AppSidebar() {
           <SidebarGroupLabel>Menu</SidebarGroupLabel>
           <SidebarContent>
             <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link href="/">
-                    <Home size="28" />
-                    <span>Home</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <Collapsible defaultOpen className="group/collapsible">
-                <SidebarMenuItem>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuButton className="flex w-full cursor-pointer items-center justify-between">
-                      Text Tools
-                      <ChevronRight
-                        size="28"
-                        className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
-                      />
-                    </SidebarMenuButton>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <SidebarMenuSub>
-                      {menuToolsItems.map((item) => (
-                        <SidebarMenuSubItem key={item.title}>
-                          <SidebarMenuButton asChild>
-                            <Link
-                              href={`/text-tools/${item.url}`}
-                              target={item.targetBlank ? '_blank' : '_self'}
-                            >
-                              <span>{item.title}</span>
-                            </Link>
-                          </SidebarMenuButton>
-                        </SidebarMenuSubItem>
-                      ))}
-                    </SidebarMenuSub>
-                  </CollapsibleContent>
-                </SidebarMenuItem>
-              </Collapsible>
-              <Collapsible defaultOpen className="group/collapsible">
-                <SidebarMenuItem>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuButton className="flex w-full cursor-pointer items-center justify-between">
-                      Contact
-                      <ChevronRight
-                        size="28"
-                        className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
-                      />
-                    </SidebarMenuButton>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <SidebarMenuSub>
-                      {contactItems.map((item) => (
-                        <SidebarMenuSubItem key={item.title}>
-                          <SidebarMenuButton asChild>
-                            <Link href={item.url} target={item.targetBlank ? '_blank' : '_self'}>
-                              <span>{item.title}</span>
-                            </Link>
-                          </SidebarMenuButton>
-                        </SidebarMenuSubItem>
-                      ))}
-                    </SidebarMenuSub>
-                  </CollapsibleContent>
-                </SidebarMenuItem>
-              </Collapsible>
+              <SubmenuComponent title={'Home'} url={''} targetBlank={false} />
+              <SubmenuCollapsibleComponent title="Text Tools" toolItems={menuToolsItems} />
+              <SubmenuCollapsibleComponent title="Contact" toolItems={contactItems} />
             </SidebarMenu>
           </SidebarContent>
         </SidebarGroup>
