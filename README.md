@@ -6,17 +6,31 @@ A modern web application built with Next.js that provides various text manipulat
 
 - **Notepad**: A text editor with the following capabilities:
 
-  - Text editing with a clean interface
-  - Character count (with and without spaces)
-  - Word count
-  - Sentence count
-  - Line count
-  - Copy text to clipboard
-  - Cut text to clipboard
-  - Download text as a file
-  - Reset text area
+    - Text editing with a clean interface
+    - Character count (with and without spaces)
+    - Word count
+    - Sentence count
+    - Line count
+    - Copy text to clipboard
+    - Cut text to clipboard
+    - Download text as a text file
+    - Reset text area
 
-- **Case Converter**: Convert text between different cases (in development)
+- **Case Converter**: Convert text between different cases:
+
+    - Uppercase conversion
+    - Lowercase conversion
+    - Title Case conversion
+    - Sentence case conversion
+    - Toggle case conversion
+    - Download the converted text as a text file
+
+- **Base64 Encode and Decode**: Convert text to and from Base64 encoding:
+
+    - Encode text to Base64
+    - Decode Base64 to text
+    - Copy encoded/decoded text to clipboard
+    - Download the encoded/decoded text as a text file
 
 ## Tech Stack
 
@@ -99,6 +113,20 @@ docker build -t online-text-tools .
 # Run the container
 docker run -p 3000:3000 online-text-tools
 ```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## Repository
+
+- GitHub: [https://github.com/duggavamshidhar/online-text-tools/](https://github.com/duggavamshidhar/online-text-tools/)
 
 ## Learn More
 
