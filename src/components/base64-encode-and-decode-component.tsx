@@ -19,7 +19,7 @@ import ToolsComponent from '@/components/tools-component'
 import { Textarea } from '@/components/ui/textarea'
 import React, { useState } from 'react'
 
-export default function Base64EncoderDecoderComponent() {
+export default function Base64EncodeAndDecodeComponent() {
   const [text, setText] = useState<string>('')
   const toolBarItems = [
     {
@@ -58,7 +58,7 @@ export default function Base64EncoderDecoderComponent() {
   ]
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-y-2">
-      <div className="px-0.5 text-2xl font-semibold">Base64 Encoder/Decoder</div>
+      <div className="px-0.5 text-2xl font-semibold">Base64 Encode and Decode</div>
       <div className="flex flex-col gap-y-1">
         <ToolbarComponent>
           <CharacterCountComponent

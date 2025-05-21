@@ -35,8 +35,8 @@ export function AppSidebar() {
       targetBlank: false
     },
     {
-      title: 'Base 64 Encoder/Decoder',
-      url: 'base-64-encoder-decoder',
+      title: 'Base64 Encode and Decode',
+      url: 'base64-encode-and-decode',
       targetBlank: false
     }
   ]
