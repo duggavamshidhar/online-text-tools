@@ -10,30 +10,35 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem
 } from '@/components/ui/sidebar'
-import { CaseSensitive, ChevronRight, GithubIcon, Home, LinkedinIcon } from 'lucide-react'
+import { ChevronRight, Home } from 'lucide-react'
 import Link from 'next/link'
+import * as React from 'react'
+
+interface menuItems {
+  title: string
+  url: string
+  targetBlank: boolean
+}
 
 export function AppSidebar() {
-  const contactItems = [
+  const contactItems: menuItems[] = [
     {
       title: 'GitHub',
       url: 'https://github.com/duggavamshidhar/online-text-tools/',
-      icon: GithubIcon,
+
       targetBlank: true
     },
     {
       title: 'LinkedIn',
       url: 'https://linkedin.com/in/duggavamshidhar/',
-      icon: LinkedinIcon,
       targetBlank: true
     }
   ]
 
-  const textToolsItems = [
+  const menuToolsItems: menuItems[] = [
     {
       title: 'Case Converter',
       url: 'case-converter',
-      icon: CaseSensitive,
       targetBlank: false
     }
   ]
@@ -57,19 +62,21 @@ export function AppSidebar() {
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton className="flex w-full cursor-pointer items-center justify-between">
                       Text Tools
-                      <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
+                      <ChevronRight
+                        size="28"
+                        className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
+                      />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
                   <CollapsibleContent>
                     <SidebarMenuSub>
-                      {textToolsItems.map((item) => (
+                      {menuToolsItems.map((item) => (
                         <SidebarMenuSubItem key={item.title}>
                           <SidebarMenuButton asChild>
                             <Link
                               href={`/text-tools/${item.url}`}
                               target={item.targetBlank ? '_blank' : '_self'}
                             >
-                              {item.icon !== null && <item.icon />}
                               <span>{item.title}</span>
                             </Link>
                           </SidebarMenuButton>
@@ -84,7 +91,10 @@ export function AppSidebar() {
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton className="flex w-full cursor-pointer items-center justify-between">
                       Contact
-                      <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
+                      <ChevronRight
+                        size="28"
+                        className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
+                      />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
                   <CollapsibleContent>
@@ -93,7 +103,6 @@ export function AppSidebar() {
                         <SidebarMenuSubItem key={item.title}>
                           <SidebarMenuButton asChild>
                             <Link href={item.url} target={item.targetBlank ? '_blank' : '_self'}>
-                              <item.icon />
                               <span>{item.title}</span>
                             </Link>
                           </SidebarMenuButton>
