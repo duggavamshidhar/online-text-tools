@@ -7,8 +7,10 @@ import {
   changeTextToAlternatingCase,
   changeTextToCapitalizedCase,
   changeTextToInverseCase,
+  changeTextToLowerCase,
   changeTextToSentenceCase,
   changeTextToTitleCase,
+  changeTextToUpperCase,
   copyToClipboard,
   cutToClipboard,
   downloadAsFile,
@@ -20,52 +22,44 @@ import {
   resetTextArea
 } from '@/modules/global'
 import React, { useState } from 'react'
+import ToolsComponent from '@/components/tools-component'
 
 export default function CaseConverterComponent() {
   const [text, setText] = useState<string>('')
   const toolBarItems = [
     {
-      toolTipContent: 'Convert to sentence case',
       label: 'Sentence Case',
       onClick: () => setText(changeTextToSentenceCase(text))
     },
     {
-      toolTipContent: 'Convert to uppercase',
       label: 'Uppercase',
-      onClick: () => setText(text.toUpperCase())
+      onClick: () => setText(changeTextToUpperCase(text))
     },
     {
-      toolTipContent: 'Convert to lowercase',
       label: 'Lowercase',
-      onClick: () => setText(text.toLowerCase())
+      onClick: () => setText(changeTextToLowerCase(text))
     },
     {
-      toolTipContent: 'Convert to capitalized case',
       label: 'Capitalized Case',
       onClick: () => setText(changeTextToCapitalizedCase(text))
     },
     {
-      toolTipContent: 'Convert to title case',
       label: 'Title Case',
       onClick: () => setText(changeTextToTitleCase(text))
     },
     {
-      toolTipContent: 'Convert to alternating case',
       label: 'Alternating Case',
       onClick: () => setText(changeTextToAlternatingCase(text))
     },
     {
-      toolTipContent: 'Convert to inverse case',
       label: 'Inverse Case',
       onClick: () => setText(changeTextToInverseCase(text))
     },
     {
-      toolTipContent: 'Download as text file',
       label: 'Download as text file',
       onClick: () => downloadAsFile(text)
     },
     {
-      toolTipContent: 'Cut',
       label: 'Cut',
       onClick: () => {
         cutToClipboard(text)
@@ -73,16 +67,13 @@ export default function CaseConverterComponent() {
       }
     },
     {
-      toolTipContent: 'Copy to clipboard',
       label: 'Copy',
       onClick: () => copyToClipboard(text)
     },
     {
-      toolTipContent: 'Reset',
       label: 'Reset',
       onClick: () => {
-        resetTextArea()
-        setText('')
+        setText(resetTextArea(text))
       }
     }
   ]
@@ -91,7 +82,7 @@ export default function CaseConverterComponent() {
       <div className="mx-auto flex max-w-4xl flex-col gap-y-2">
         <div className="px-0.5 text-2xl font-semibold">Case Converter</div>
         <div className="flex flex-col gap-y-1">
-          <ToolbarComponent items={toolBarItems}>
+          <ToolbarComponent>
             <CharacterCountComponent
               characterCount={handleCharacterCount(text)}
               characterCountWithoutSpaces={handleCharacterCountWithSpaces(text)}
@@ -99,6 +90,7 @@ export default function CaseConverterComponent() {
               sentenceCount={handleSentenceCount(text)}
               lineCount={handleLineCount(text)}
             />
+            <ToolsComponent items={toolBarItems} />
           </ToolbarComponent>
           <Textarea
             className="min-h-[400px]"

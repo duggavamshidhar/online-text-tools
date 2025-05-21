@@ -1,7 +1,17 @@
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Button } from '@/components/ui/button'
+import * as React from 'react'
+import { useEffect, useState } from 'react'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui/dialog'
+import { CaseSensitive } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import React, { useEffect, useState } from 'react'
+import { Separator } from '@/components/ui/separator'
 
 interface CharacterCountProps {
   characterCount: number
@@ -12,6 +22,7 @@ interface CharacterCountProps {
 }
 
 export default function CharacterCountComponent(props: CharacterCountProps) {
+  const [open, setOpen] = React.useState(false)
   const [characterCount, setCharacterCount] = useState<number>(0)
   const [characterCountWithSpaces, setCharacterCountWithSpaces] = useState<number>(0)
   const [wordCount, setWordCount] = useState<number>(0)
@@ -19,15 +30,11 @@ export default function CharacterCountComponent(props: CharacterCountProps) {
   const [lineCount, setLineCount] = useState<number>(0)
 
   const toolBarItems = [
-    { toolTipContent: 'Character count', label: 'Character count:', dataVar: characterCount },
-    {
-      toolTipContent: 'Character count with spaces',
-      label: 'Character count with spaces:',
-      dataVar: characterCountWithSpaces
-    },
-    { toolTipContent: 'Word count', label: 'Word count:', dataVar: wordCount },
-    { toolTipContent: 'Sentence count', label: 'Sentence count:', dataVar: sentenceCount },
-    { toolTipContent: 'Line count', label: 'Line count:', dataVar: lineCount }
+    { label: 'Character count:', dataVar: characterCount },
+    { label: 'Character count with spaces:', dataVar: characterCountWithSpaces },
+    { label: 'Word count:', dataVar: wordCount },
+    { label: 'Sentence count:', dataVar: sentenceCount },
+    { label: 'Line count:', dataVar: lineCount }
   ]
 
   useEffect(() => {
@@ -39,26 +46,33 @@ export default function CharacterCountComponent(props: CharacterCountProps) {
   }, [props])
 
   return (
-    <>
-      {toolBarItems.map((item, index) => (
-        <TooltipProvider key={index}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                className="mx-0.5 flex w-auto items-center gap-1 p-2"
-                variant="outline"
-                size="icon"
-              >
-                <span className="font-normal">{item.label}</span>
-                <Badge variant="secondary">{item.dataVar}</Badge>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{item.toolTipContent}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      ))}
-    </>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button
+          variant="outline"
+          size="icon"
+          className="mx-0.5 flex w-auto cursor-pointer items-center gap-1 p-2"
+        >
+          <CaseSensitive size="28" />
+          <Separator orientation="vertical" />
+          <span className="font-normal">Character Count</span>
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogTitle>Character count</DialogTitle>
+        <DialogHeader>
+          <DialogDescription asChild>
+            <div className="flex flex-col gap-2">
+              {toolBarItems.map((item, index) => (
+                <div key={index} className="flex w-full items-center justify-between">
+                  <span className="font-normal">{item.label}</span>
+                  <Badge variant="secondary">{item.dataVar}</Badge>
+                </div>
+              ))}
+            </div>
+          </DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
   )
 }

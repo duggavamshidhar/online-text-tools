@@ -5,6 +5,7 @@ A modern web application built with Next.js that provides various text manipulat
 ## Features
 
 - **Notepad**: A text editor with the following capabilities:
+
   - Text editing with a clean interface
   - Character count (with and without spaces)
   - Word count

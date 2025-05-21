@@ -25,35 +25,56 @@ export function handleLineCount(text: string): number {
 }
 
 export function copyToClipboard(text: string): void {
-  navigator.clipboard
-    .writeText(text)
-    .then(() => toast.success('Copied to clipboard successfully.'))
-    .catch(() => toast.error('Failed to copy to clipboard.'))
+  if (!text.trim()) {
+    toast.error('Please enter some text to copy to clipboard.')
+  } else {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => toast.success('Copied to clipboard successfully.'))
+      .catch(() => toast.error('Failed to copy to clipboard.'))
+  }
 }
 
 export function cutToClipboard(text: string): void {
-  navigator.clipboard
-    .writeText(text)
-    .then(() => toast.success('Cut to clipboard successfully.'))
-    .catch(() => toast.error('Failed to cut to clipboard.'))
+  if (!text.trim()) {
+    toast.error('Please enter some text to cut to clipboard.')
+  } else {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => toast.success('Cut to clipboard successfully.'))
+      .catch(() => toast.error('Failed to cut to clipboard.'))
+  }
 }
 
-export function resetTextArea(): void {
-  toast.success('Text area has been reset.')
+export function resetTextArea(text: string): string {
+  if (!text.trim()) {
+    toast.error('Please enter some text to reset.')
+    return ''
+  } else {
+    toast.success('Text area has been reset.')
+    return ''
+  }
 }
 
 export function downloadAsFile(text: string, fileName: string = 'myFile.txt'): void {
-  const fileBlob = new Blob([text], { type: 'text/plain' })
-  const downloadLink = document.createElement('a')
-  downloadLink.download = fileName
-  downloadLink.href = URL.createObjectURL(fileBlob)
-  downloadLink.click()
-  toast.success('Your file is downloading...')
-  URL.revokeObjectURL(downloadLink.href)
+  if (!text.trim()) {
+    toast.error('Please enter some text to download as a text file.')
+  } else {
+    const fileBlob = new Blob([text], { type: 'text/plain' })
+    const downloadLink = document.createElement('a')
+    downloadLink.download = fileName
+    downloadLink.href = URL.createObjectURL(fileBlob)
+    downloadLink.click()
+    toast.success('Your file is downloading...')
+    URL.revokeObjectURL(downloadLink.href)
+  }
 }
 
 export function changeTextToSentenceCase(text: string): string {
-  if (!text.trim()) return text
+  if (!text.trim()) {
+    toast.error('Please enter some text to convert to sentence case.')
+    return text
+  }
   const textParts: string[] = text.split(/([.!?]+)/)
   const formattedSentences: string[] = []
   for (let i: number = 0; i < textParts.length; i += 2) {
@@ -69,8 +90,27 @@ export function changeTextToSentenceCase(text: string): string {
   return formattedSentences.join(' ')
 }
 
+export function changeTextToUpperCase(text: string): string {
+  if (!text.trim()) {
+    toast.error('Please enter some text to convert to uppercase.')
+    return text
+  }
+  return text.toUpperCase()
+}
+
+export function changeTextToLowerCase(text: string): string {
+  if (!text.trim()) {
+    toast.error('Please enter some text to convert to lowercase.')
+    return text
+  }
+  return text.toLowerCase()
+}
+
 export function changeTextToCapitalizedCase(text: string): string {
-  if (!text.trim()) return text
+  if (!text.trim()) {
+    toast.error('Please enter some text to convert to capitalized case.')
+    return text
+  }
   return text
     .split(' ')
     .map((word) => {
@@ -81,7 +121,10 @@ export function changeTextToCapitalizedCase(text: string): string {
 }
 
 export function changeTextToTitleCase(text: string): string {
-  if (!text.trim()) return text
+  if (!text.trim()) {
+    toast.error('Please enter some text to convert to title case.')
+    return text
+  }
   const minorWords = [
     'a',
     'an',
@@ -120,7 +163,10 @@ export function changeTextToTitleCase(text: string): string {
 }
 
 export function changeTextToAlternatingCase(text: string): string {
-  if (!text.trim()) return text
+  if (!text.trim()) {
+    toast.error('Please enter some text to convert to alternating case.')
+    return text
+  }
   return text
     .split('')
     .map((char, index) => {
@@ -130,7 +176,10 @@ export function changeTextToAlternatingCase(text: string): string {
 }
 
 export function changeTextToInverseCase(text: string): string {
-  if (!text.trim()) return text
+  if (!text.trim()) {
+    toast.error('Please enter some text to convert to inverse case.')
+    return text
+  }
   return text
     .split('')
     .map((char) => {
