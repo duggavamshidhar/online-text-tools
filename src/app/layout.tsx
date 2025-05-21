@@ -11,14 +11,23 @@ const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
 })
 
-export const metadata: Metadata = {
-  title: { default: 'Online Text Tools', template: '%s | Online Text Tools' },
+interface metaDataType {
+  title: string
+  description: string
+}
+
+const metaData: metaDataType = {
+  title: 'Online Text Tools',
   description:
-    'Online Text Tools is a web application that provides a collection of free online text tools such as a character counter, word counter, and text case converter.',
+    'Online Text Tools is a web app offering free tools like character and word counters, text case converters, and more for easy text management.'
+}
+
+export const metadata: Metadata = {
+  title: { default: metaData.title, template: `%s | ${metaData.title}` },
+  description: metaData.description,
   openGraph: {
-    title: { default: 'Online Text Tools', template: '%s | Online Text Tools' },
-    description:
-      'Online Text Tools is a web application that provides a collection of free online text tools such as a character counter, word counter, and text case converter.'
+    title: { default: metaData.title, template: `%s | ${metaData.title}` },
+    description: metaData.description
   }
 }
 
