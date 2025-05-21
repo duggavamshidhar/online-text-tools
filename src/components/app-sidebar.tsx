@@ -33,6 +33,11 @@ export function AppSidebar() {
       title: 'Case Converter',
       url: 'case-converter',
       targetBlank: false
+    },
+    {
+      title: 'Base 64 Encoder/Decoder',
+      url: 'base-64-encoder-decoder',
+      targetBlank: false
     }
   ]
 

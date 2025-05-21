@@ -191,3 +191,35 @@ export function changeTextToInverseCase(text: string): string {
     })
     .join('')
 }
+
+export function encodeToBase64(text: string): string {
+  if (!text.trim()) {
+    toast.error('Please enter some text to encode to Base64.')
+    return text
+  }
+  try {
+    const encodedText = btoa(text)
+    toast.success('Text has been encoded successfully.')
+    return encodedText
+  } catch (err) {
+    toast.error('Invalid Text format.')
+    console.log(err)
+    return text
+  }
+}
+
+export function decodeFromBase64(text: string): string {
+  if (!text.trim()) {
+    toast.error('Please enter some text to decode from Base64.')
+    return text
+  }
+  try {
+    const decodedText = atob(text)
+    toast.success('Text has been decoded successfully.')
+    return decodedText
+  } catch (err) {
+    toast.error('Invalid Base64 string.')
+    console.log(err)
+    return text
+  }
+}
