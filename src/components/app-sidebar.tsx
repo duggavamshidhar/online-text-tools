@@ -48,7 +48,7 @@ export function AppSidebar() {
           <SidebarGroupLabel>Menu</SidebarGroupLabel>
           <SidebarContent>
             <SidebarMenu>
-              <SubmenuComponent title={'Home'} url={''} targetBlank={false} />
+              <SubmenuComponent title={'Home'} url={'/'} targetBlank={false} />
               <SubmenuCollapsibleComponent title="Text Tools" toolItems={menuToolsItems} />
               <SubmenuCollapsibleComponent title="Contact" toolItems={contactItems} />
             </SidebarMenu>
