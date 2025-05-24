@@ -65,8 +65,14 @@ export default function CharacterCountComponent(props: CharacterCountProps) {
             <div className="flex flex-col gap-2">
               {toolBarItems.map((item, index) => (
                 <div key={index} className="flex w-full items-center justify-between">
-                  <span className="font-normal">{item.label}</span>
-                  <Badge variant="secondary">{item.dataVar}</Badge>
+                  <Button
+                    className="flex w-full items-center justify-between px-2 py-1"
+                    variant="outline"
+                    size="icon"
+                  >
+                    <span className="font-normal">{item.label}</span>
+                    <Badge variant="secondary">{item.dataVar}</Badge>
+                  </Button>
                 </div>
               ))}
             </div>

@@ -43,12 +43,14 @@ export default function ToolsComponent({ items }: ToolsProps) {
             <div className="flex flex-col gap-2">
               {items.map((item, index) => (
                 <div key={index} className="flex w-full items-center justify-between">
-                  <span
+                  <Button
+                    variant="outline"
+                    size="icon"
                     onClick={item.onClick}
-                    className="cursor-pointer font-normal hover:underline"
+                    className="flex w-full cursor-pointer items-center"
                   >
                     {item.label}
-                  </span>
+                  </Button>
                 </div>
               ))}
             </div>
