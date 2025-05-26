@@ -1,4 +1,5 @@
 import { toast } from 'sonner'
+import { UpdateWordFrequencyProps } from '@/components/word-frequency-counter-component'
 
 export function handleCharacterCount(text: string): number {
   return text.length
@@ -222,4 +223,22 @@ export function decodeFromBase64(text: string): string {
     console.log(err)
     return text
   }
+}
+
+export function updateWordFrequency(text: string): object[] {
+  if (!text.trim()) {
+    return []
+  }
+  const words = text.toLowerCase().match(/\b\w+\b/g)
+  if (!words) return []
+  const frequency: Record<string, number> = {}
+  words.forEach((word) => {
+    frequency[word] = (frequency[word] || 0) + 1
+  })
+  const mapFrequencyArray: UpdateWordFrequencyProps[] = Object.entries(frequency).map((entry) => ({
+    word: entry[0],
+    count: entry[1]
+  }))
+  mapFrequencyArray.sort((a, b) => b.count - a.count)
+  return mapFrequencyArray
 }

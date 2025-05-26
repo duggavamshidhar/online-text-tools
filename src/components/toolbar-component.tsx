@@ -5,5 +5,5 @@ interface NotepadToolbarProps {
 }
 
 export default function ToolbarComponent({ children }: NotepadToolbarProps) {
-  return <div className="flex w-full justify-between gap-1">{children}</div>
+  return <div className="flex w-full justify-between gap-1 overflow-x-auto">{children}</div>
 }
