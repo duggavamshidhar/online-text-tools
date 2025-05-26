@@ -7,14 +7,13 @@ import {
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
-import * as React from 'react'
 
 interface SubmenuCollapsibleComponentProps {
   title: string
-  toolItems: menuItems[]
+  toolItems: MenuItems[]
 }
 
-interface menuItems {
+interface MenuItems {
   title: string
   url: string
   targetBlank: boolean

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Textarea } from '@/components/ui/textarea'
 import ToolbarComponent from '@/components/toolbar-component'
 import { copyToClipboard, cutToClipboard, downloadAsFile, resetTextArea } from '@/modules/clipboard'
@@ -19,10 +19,10 @@ import WordFrequencyCounterComponent, {
 } from '@/components/word-frequency-counter-component'
 
 export default function WordFrequencyComponent() {
-  const [text, setText] = useState<string>('')
+  const [text, setText] = useState('')
   const [wordFrequency, setWordFrequency] = useState<UpdateWordFrequencyProps[]>([])
 
-  const toolBarItems = React.useMemo(
+  const toolBarItems = useMemo(
     () => [
       {
         label: 'Download as CSV',

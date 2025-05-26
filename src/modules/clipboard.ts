@@ -1,8 +1,15 @@
 import { toast } from 'sonner'
 
-export function copyToClipboard(text: string): void {
+function validateClipboardText(text: string, errorMessage: string): boolean {
   if (!text.trim()) {
-    toast.error('Please enter some text to copy to clipboard.')
+    toast.error(errorMessage)
+    return false
+  }
+  return true
+}
+
+export function copyToClipboard(text: string): void {
+  if (!validateClipboardText(text, 'Please enter some text to copy to clipboard.')) {
     return
   }
 
@@ -13,8 +20,7 @@ export function copyToClipboard(text: string): void {
 }
 
 export function cutToClipboard(text: string): void {
-  if (!text.trim()) {
-    toast.error('Please enter some text to cut to clipboard.')
+  if (!validateClipboardText(text, 'Please enter some text to cut to clipboard.')) {
     return
   }
 
@@ -25,8 +31,7 @@ export function cutToClipboard(text: string): void {
 }
 
 export function resetTextArea(text: string): string {
-  if (!text.trim()) {
-    toast.error('Please enter some text to reset.')
+  if (!validateClipboardText(text, 'Please enter some text to reset.')) {
     return ''
   }
 
@@ -34,9 +39,8 @@ export function resetTextArea(text: string): string {
   return ''
 }
 
-export function downloadAsFile(text: string, fileName: string = 'myFile.txt'): void {
-  if (!text.trim()) {
-    toast.error('Please enter some text to download as a text file.')
+export function downloadAsFile(text: string, fileName = 'myFile.txt'): void {
+  if (!validateClipboardText(text, 'Please enter some text to download as a text file.')) {
     return
   }
 

@@ -4,19 +4,25 @@ export function handleCharacterCount(text: string): number {
   return text.length
 }
 
+const whitespaceRegex = /\s/g
+
 export function handleCharacterCountWithoutSpaces(text: string): number {
-  return text.replace(/\s/g, '').length
+  return text.replace(whitespaceRegex, '').length
 }
+
+const whitespaceDelimiterRegex = /\s+/
 
 export function handleWordCount(text: string): number {
   const trimmedText = text.trim()
   if (!trimmedText) return 0
-  return trimmedText.split(/\s+/).filter((word) => word.length > 0).length
+  return trimmedText.split(whitespaceDelimiterRegex).filter((word) => word.length > 0).length
 }
+
+const sentenceDelimiterRegex = /[.!?]+/
 
 export function handleSentenceCount(text: string): number {
   if (!text.trim()) return 0
-  return text.split(/[.!?]+/).filter((sentence) => sentence.trim().length > 0).length
+  return text.split(sentenceDelimiterRegex).filter((sentence) => sentence.trim().length > 0).length
 }
 
 export function handleLineCount(text: string): number {
@@ -24,12 +30,14 @@ export function handleLineCount(text: string): number {
   return text.split('\n').filter((line) => line.trim().length > 0).length
 }
 
+const wordRegex = /\b\w+\b/g
+
 export function updateWordFrequency(text: string): UpdateWordFrequencyProps[] {
   if (!text.trim()) {
     return []
   }
 
-  const words = text.toLowerCase().match(/\b\w+\b/g)
+  const words = text.toLowerCase().match(wordRegex)
   if (!words) return []
 
   const frequency: Record<string, number> = {}

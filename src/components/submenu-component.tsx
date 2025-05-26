@@ -1,6 +1,5 @@
 import { SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar'
 import Link from 'next/link'
-import * as React from 'react'
 
 interface SubmenuComponentProps {
   title: string

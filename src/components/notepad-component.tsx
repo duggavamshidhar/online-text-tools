@@ -1,13 +1,13 @@
 'use client'
 
 import { Textarea } from '@/components/ui/textarea'
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import {
   copyToClipboard,
   cutToClipboard,
   downloadAsFile,
   handleCharacterCount,
-  handleCharacterCountWithSpaces,
+  handleCharacterCountWithoutSpaces,
   handleLineCount,
   handleSentenceCount,
   handleWordCount,
@@ -18,30 +18,33 @@ import ToolbarComponent from '@/components/toolbar-component'
 import ToolsComponent from '@/components/tools-component'
 
 export default function NotepadComponent() {
-  const [text, setText] = useState<string>('')
-  const toolBarItems = [
-    {
-      label: 'Download as text file',
-      onClick: () => downloadAsFile(text)
-    },
-    {
-      label: 'Cut',
-      onClick: () => {
-        cutToClipboard(text)
-        setText('')
+  const [text, setText] = useState('')
+  const toolBarItems = useMemo(
+    () => [
+      {
+        label: 'Download as text file',
+        onClick: () => downloadAsFile(text)
+      },
+      {
+        label: 'Cut',
+        onClick: () => {
+          cutToClipboard(text)
+          setText('')
+        }
+      },
+      {
+        label: 'Copy',
+        onClick: () => copyToClipboard(text)
+      },
+      {
+        label: 'Reset',
+        onClick: () => {
+          setText(resetTextArea(text))
+        }
       }
-    },
-    {
-      label: 'Copy',
-      onClick: () => copyToClipboard(text)
-    },
-    {
-      label: 'Reset',
-      onClick: () => {
-        setText(resetTextArea(text))
-      }
-    }
-  ]
+    ],
+    [text]
+  )
 
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-y-2">
@@ -50,7 +53,7 @@ export default function NotepadComponent() {
         <ToolbarComponent>
           <CharacterCountComponent
             characterCount={handleCharacterCount(text)}
-            characterCountWithoutSpaces={handleCharacterCountWithSpaces(text)}
+            characterCountWithoutSpaces={handleCharacterCountWithoutSpaces(text)}
             wordCount={handleWordCount(text)}
             sentenceCount={handleSentenceCount(text)}
             lineCount={handleLineCount(text)}

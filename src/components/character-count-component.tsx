@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import * as React from 'react'
+import { useState, useMemo } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -27,9 +27,9 @@ export default function CharacterCountComponent({
   sentenceCount,
   lineCount
 }: CharacterCountProps) {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
 
-  const toolBarItems = React.useMemo(
+  const toolBarItems = useMemo(
     () => [
       { label: 'Character count:', dataVar: characterCount },
       { label: 'Character count with spaces:', dataVar: characterCountWithoutSpaces },

@@ -11,12 +11,12 @@ const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
 })
 
-interface metaDataType {
+interface MetaDataType {
   title: string
   description: string
 }
 
-const metaData: metaDataType = {
+const metaData: MetaDataType = {
   title: 'Online Text Tools',
   description:
     'Online Text Tools is a web app offering free tools like character and word counters, text case converters, and more for easy text management.'

@@ -9,7 +9,7 @@ import {
   downloadAsFile,
   encodeToBase64,
   handleCharacterCount,
-  handleCharacterCountWithSpaces,
+  handleCharacterCountWithoutSpaces,
   handleLineCount,
   handleSentenceCount,
   handleWordCount,
@@ -17,45 +17,48 @@ import {
 } from '@/modules/global'
 import ToolsComponent from '@/components/tools-component'
 import { Textarea } from '@/components/ui/textarea'
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 
 export default function Base64EncodeAndDecodeComponent() {
-  const [text, setText] = useState<string>('')
-  const toolBarItems = [
-    {
-      label: 'Encode to Base64',
-      onClick: () => {
-        setText(encodeToBase64(text))
+  const [text, setText] = useState('')
+  const toolBarItems = useMemo(
+    () => [
+      {
+        label: 'Encode to Base64',
+        onClick: () => {
+          setText(encodeToBase64(text))
+        }
+      },
+      {
+        label: 'Decode from Base64',
+        onClick: () => {
+          setText(decodeFromBase64(text))
+        }
+      },
+      {
+        label: 'Download as text file',
+        onClick: () => downloadAsFile(text)
+      },
+      {
+        label: 'Cut',
+        onClick: () => {
+          cutToClipboard(text)
+          setText('')
+        }
+      },
+      {
+        label: 'Copy',
+        onClick: () => copyToClipboard(text)
+      },
+      {
+        label: 'Reset',
+        onClick: () => {
+          setText(resetTextArea(text))
+        }
       }
-    },
-    {
-      label: 'Decode from Base64',
-      onClick: () => {
-        setText(decodeFromBase64(text))
-      }
-    },
-    {
-      label: 'Download as text file',
-      onClick: () => downloadAsFile(text)
-    },
-    {
-      label: 'Cut',
-      onClick: () => {
-        cutToClipboard(text)
-        setText('')
-      }
-    },
-    {
-      label: 'Copy',
-      onClick: () => copyToClipboard(text)
-    },
-    {
-      label: 'Reset',
-      onClick: () => {
-        setText(resetTextArea(text))
-      }
-    }
-  ]
+    ],
+    [text]
+  )
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-y-2">
       <div className="px-0.5 text-2xl font-semibold">Base64 Encode and Decode</div>
@@ -63,7 +66,7 @@ export default function Base64EncodeAndDecodeComponent() {
         <ToolbarComponent>
           <CharacterCountComponent
             characterCount={handleCharacterCount(text)}
-            characterCountWithoutSpaces={handleCharacterCountWithSpaces(text)}
+            characterCountWithoutSpaces={handleCharacterCountWithoutSpaces(text)}
             wordCount={handleWordCount(text)}
             sentenceCount={handleSentenceCount(text)}
             lineCount={handleLineCount(text)}

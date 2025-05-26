@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -21,7 +21,7 @@ interface ToolsProps {
 }
 
 export default function ToolsComponent({ items }: ToolsProps) {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

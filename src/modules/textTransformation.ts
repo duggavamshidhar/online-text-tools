@@ -1,21 +1,30 @@
 import { toast } from 'sonner'
 
-export function changeTextToSentenceCase(text: string): string {
+function validateText(text: string, errorMessage: string): boolean {
   if (!text.trim()) {
-    toast.error('Please enter some text to convert to sentence case.')
+    toast.error(errorMessage)
+    return false
+  }
+  return true
+}
+
+const sentenceSplitRegex = /([.!?]+)/
+
+export function changeTextToSentenceCase(text: string): string {
+  if (!validateText(text, 'Please enter some text to convert to sentence case.')) {
     return text
   }
 
-  const textParts: string[] = text.split(/([.!?]+)/)
-  const formattedSentences: string[] = []
+  const textParts = text.split(sentenceSplitRegex)
+  const formattedSentences = []
 
   for (let i = 0; i < textParts.length; i += 2) {
-    const sentenceText: string = textParts[i]?.trim()
+    const sentenceText = textParts[i]?.trim()
     const endingPunctuation = textParts[i + 1] || ''
 
     if (sentenceText) {
-      const lowerCaseSentence: string = sentenceText.toLowerCase()
-      const capitalizedSentence: string =
+      const lowerCaseSentence = sentenceText.toLowerCase()
+      const capitalizedSentence =
         lowerCaseSentence.charAt(0).toUpperCase() + lowerCaseSentence.slice(1)
       formattedSentences.push(capitalizedSentence + endingPunctuation)
     }
@@ -25,8 +34,7 @@ export function changeTextToSentenceCase(text: string): string {
 }
 
 export function changeTextToUpperCase(text: string): string {
-  if (!text.trim()) {
-    toast.error('Please enter some text to convert to uppercase.')
+  if (!validateText(text, 'Please enter some text to convert to uppercase.')) {
     return text
   }
 
@@ -34,8 +42,7 @@ export function changeTextToUpperCase(text: string): string {
 }
 
 export function changeTextToLowerCase(text: string): string {
-  if (!text.trim()) {
-    toast.error('Please enter some text to convert to lowercase.')
+  if (!validateText(text, 'Please enter some text to convert to lowercase.')) {
     return text
   }
 
@@ -43,8 +50,7 @@ export function changeTextToLowerCase(text: string): string {
 }
 
 export function changeTextToCapitalizedCase(text: string): string {
-  if (!text.trim()) {
-    toast.error('Please enter some text to convert to capitalized case.')
+  if (!validateText(text, 'Please enter some text to convert to capitalized case.')) {
     return text
   }
 
@@ -58,8 +64,7 @@ export function changeTextToCapitalizedCase(text: string): string {
 }
 
 export function changeTextToTitleCase(text: string): string {
-  if (!text.trim()) {
-    toast.error('Please enter some text to convert to title case.')
+  if (!validateText(text, 'Please enter some text to convert to title case.')) {
     return text
   }
 
@@ -75,7 +80,6 @@ export function changeTextToTitleCase(text: string): string {
     'as',
     'at',
     'by',
-    'for',
     'from',
     'in',
     'into',
@@ -105,8 +109,7 @@ export function changeTextToTitleCase(text: string): string {
 }
 
 export function changeTextToAlternatingCase(text: string): string {
-  if (!text.trim()) {
-    toast.error('Please enter some text to convert to alternating case.')
+  if (!validateText(text, 'Please enter some text to convert to alternating case.')) {
     return text
   }
 
@@ -117,8 +120,7 @@ export function changeTextToAlternatingCase(text: string): string {
 }
 
 export function changeTextToInverseCase(text: string): string {
-  if (!text.trim()) {
-    toast.error('Please enter some text to convert to inverse case.')
+  if (!validateText(text, 'Please enter some text to convert to inverse case.')) {
     return text
   }
 
@@ -129,8 +131,7 @@ export function changeTextToInverseCase(text: string): string {
 }
 
 export function encodeToBase64(text: string): string {
-  if (!text.trim()) {
-    toast.error('Please enter some text to encode to Base64.')
+  if (!validateText(text, 'Please enter some text to encode to Base64.')) {
     return text
   }
 
@@ -138,16 +139,14 @@ export function encodeToBase64(text: string): string {
     const encodedText = btoa(text)
     toast.success('Text has been encoded successfully.')
     return encodedText
-  } catch (err) {
+  } catch {
     toast.error('Invalid Text format.')
-    console.error(err)
     return text
   }
 }
 
 export function decodeFromBase64(text: string): string {
-  if (!text.trim()) {
-    toast.error('Please enter some text to decode from Base64.')
+  if (!validateText(text, 'Please enter some text to decode from Base64.')) {
     return text
   }
 
@@ -155,9 +154,8 @@ export function decodeFromBase64(text: string): string {
     const decodedText = atob(text)
     toast.success('Text has been decoded successfully.')
     return decodedText
-  } catch (err) {
+  } catch {
     toast.error('Invalid Base64 string.')
-    console.error(err)
     return text
   }
 }
