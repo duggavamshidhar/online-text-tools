@@ -24,7 +24,9 @@ A modern web application built with Next.js that provides various text manipulat
     - Lowercase conversion
     - Title Case conversion
     - Sentence case conversion
-    - Toggle case conversion
+    - Capitalized case conversion
+    - Alternating case conversion
+    - Inverse case conversion (Toggle case)
     - Download the converted text as a text file
 
 - **Base64 Encode and Decode**: Convert text to and from Base64 encoding:
@@ -50,10 +52,12 @@ A modern web application built with Next.js that provides various text manipulat
 - [Next.js](https://nextjs.org) - React framework (version 15.3.1)
 - [React](https://react.dev) - UI library (version 19.0.0)
 - [TypeScript](https://www.typescriptlang.org) - Type-safe JavaScript
-- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
+- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework (version 4)
 - [Radix UI](https://www.radix-ui.com) - Unstyled, accessible UI components
 - [Lucide React](https://lucide.dev) - Icon library
 - [next-themes](https://github.com/pacocoursey/next-themes) - Theme management for Next.js
+- [Sonner](https://sonner.emilkowal.ski) - Toast notifications for React
+- [@vercel/speed-insights](https://vercel.com/docs/speed-insights) - Performance monitoring
 
 ## Getting Started
 
@@ -138,6 +142,19 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+## Request a Tool or Report an Issue
+
+We're always looking to improve and expand our text tools. If you have a suggestion for a new tool or have found an
+issue with an existing one:
+
+- **Request a Tool**: If you have an idea for a new text tool that would be
+  useful, [create a new issue](https://github.com/duggavamshidhar/online-text-tools/issues/new) with the tag "
+  enhancement" and describe the tool you'd like to see.
+
+- **Report an Issue**: If you've found a bug or have a problem with an existing
+  tool, [create a new issue](https://github.com/duggavamshidhar/online-text-tools/issues/new) with the tag "bug" and
+  provide details about the issue.
 
 ## Repository
 
