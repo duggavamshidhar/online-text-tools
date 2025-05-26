@@ -55,6 +55,16 @@ export function AppSidebar() {
             <SidebarMenu>
               <SubmenuComponent title={'Home'} url={'/'} targetBlank={false} />
               <SubmenuCollapsibleComponent title="Text Tools" toolItems={menuToolsItems} />
+              <SubmenuComponent
+                title={'Request a Tool'}
+                url={'https://github.com/duggavamshidhar/online-text-tools/issues/new'}
+                targetBlank={true}
+              />
+              <SubmenuComponent
+                title={'Report an Issue'}
+                url={'https://github.com/duggavamshidhar/online-text-tools/issues/new'}
+                targetBlank={true}
+              />
               <SubmenuCollapsibleComponent title="Contact" toolItems={contactItems} />
             </SidebarMenu>
           </SidebarContent>
