@@ -3,18 +3,15 @@
 import React, { useEffect, useState } from 'react'
 import { Textarea } from '@/components/ui/textarea'
 import ToolbarComponent from '@/components/toolbar-component'
+import { copyToClipboard, cutToClipboard, downloadAsFile, resetTextArea } from '@/modules/clipboard'
 import {
-  copyToClipboard,
-  cutToClipboard,
-  downloadAsFile,
   handleCharacterCount,
-  handleCharacterCountWithSpaces,
+  handleCharacterCountWithoutSpaces,
   handleLineCount,
   handleSentenceCount,
   handleWordCount,
-  resetTextArea,
   updateWordFrequency
-} from '@/modules/global'
+} from '@/modules/textAnalysis'
 import ToolsComponent from '@/components/tools-component'
 import CharacterCountComponent from '@/components/character-count-component'
 import WordFrequencyCounterComponent, {
@@ -24,69 +21,71 @@ import WordFrequencyCounterComponent, {
 export default function WordFrequencyComponent() {
   const [text, setText] = useState<string>('')
   const [wordFrequency, setWordFrequency] = useState<UpdateWordFrequencyProps[]>([])
-  const toolBarItems = [
-    {
-      label: 'Download as CSV',
-      onClick: () => {
-        downloadAsFile(
-          wordFrequency.map((item) => `${item.word},${item.count}`).join('\n'),
-          'word-frequency.csv'
-        )
+
+  const toolBarItems = React.useMemo(
+    () => [
+      {
+        label: 'Download as CSV',
+        onClick: () => {
+          if (wordFrequency.length > 0) {
+            downloadAsFile(
+              wordFrequency.map((item) => `${item.word},${item.count}`).join('\n'),
+              'word-frequency.csv'
+            )
+          }
+        }
+      },
+      {
+        label: 'Download as text file',
+        onClick: () => downloadAsFile(text)
+      },
+      {
+        label: 'Cut',
+        onClick: () => {
+          cutToClipboard(text)
+          setText('')
+        }
+      },
+      {
+        label: 'Copy',
+        onClick: () => copyToClipboard(text)
+      },
+      {
+        label: 'Reset',
+        onClick: () => setText(resetTextArea(text))
       }
-    },
-    {
-      label: 'Download as text file',
-      onClick: () => downloadAsFile(text)
-    },
-    {
-      label: 'Cut',
-      onClick: () => {
-        cutToClipboard(text)
-        setText('')
-      }
-    },
-    {
-      label: 'Copy',
-      onClick: () => copyToClipboard(text)
-    },
-    {
-      label: 'Reset',
-      onClick: () => {
-        setText(resetTextArea(text))
-      }
-    }
-  ]
+    ],
+    [text, wordFrequency]
+  )
 
   useEffect(() => {
-    setWordFrequency(updateWordFrequency(text) as UpdateWordFrequencyProps[])
+    setWordFrequency(updateWordFrequency(text))
   }, [text])
 
   return (
-    <>
-      <div className="mx-auto flex max-w-4xl flex-col gap-y-2">
-        <div className="px-0.5 text-2xl font-semibold">Word Frequency</div>
-        <div className="flex flex-col gap-y-1">
-          <ToolbarComponent>
-            <div className="flex items-center">
-              <CharacterCountComponent
-                characterCount={handleCharacterCount(text)}
-                characterCountWithoutSpaces={handleCharacterCountWithSpaces(text)}
-                wordCount={handleWordCount(text)}
-                sentenceCount={handleSentenceCount(text)}
-                lineCount={handleLineCount(text)}
-              />
-              <WordFrequencyCounterComponent wordFrequencyData={wordFrequency} />
-            </div>
-            <ToolsComponent items={toolBarItems} />
-          </ToolbarComponent>
-          <Textarea
-            className="min-h-[400px]"
-            placeholder="Enter your text here..."
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
-        </div>
+    <div className="mx-auto flex max-w-4xl flex-col gap-y-2">
+      <div className="px-0.5 text-2xl font-semibold">Word Frequency</div>
+      <div className="flex flex-col gap-y-1">
+        <ToolbarComponent>
+          <div className="flex items-center">
+            <CharacterCountComponent
+              characterCount={handleCharacterCount(text)}
+              characterCountWithoutSpaces={handleCharacterCountWithoutSpaces(text)}
+              wordCount={handleWordCount(text)}
+              sentenceCount={handleSentenceCount(text)}
+              lineCount={handleLineCount(text)}
+            />
+            <WordFrequencyCounterComponent wordFrequencyData={wordFrequency} />
+          </div>
+          <ToolsComponent items={toolBarItems} />
+        </ToolbarComponent>
+        <Textarea
+          className="min-h-[400px]"
+          placeholder="Enter your text here..."
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
       </div>
-    </>
+    </div>
   )
 }

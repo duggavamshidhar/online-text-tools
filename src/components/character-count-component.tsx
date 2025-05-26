@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button'
 import * as React from 'react'
-import { useEffect, useState } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -21,29 +20,25 @@ interface CharacterCountProps {
   lineCount: number
 }
 
-export default function CharacterCountComponent(props: CharacterCountProps) {
+export default function CharacterCountComponent({
+  characterCount,
+  characterCountWithoutSpaces,
+  wordCount,
+  sentenceCount,
+  lineCount
+}: CharacterCountProps) {
   const [open, setOpen] = React.useState(false)
-  const [characterCount, setCharacterCount] = useState<number>(0)
-  const [characterCountWithSpaces, setCharacterCountWithSpaces] = useState<number>(0)
-  const [wordCount, setWordCount] = useState<number>(0)
-  const [sentenceCount, setSentenceCount] = useState<number>(0)
-  const [lineCount, setLineCount] = useState<number>(0)
 
-  const toolBarItems = [
-    { label: 'Character count:', dataVar: characterCount },
-    { label: 'Character count with spaces:', dataVar: characterCountWithSpaces },
-    { label: 'Word count:', dataVar: wordCount },
-    { label: 'Sentence count:', dataVar: sentenceCount },
-    { label: 'Line count:', dataVar: lineCount }
-  ]
-
-  useEffect(() => {
-    setCharacterCount(props.characterCount)
-    setCharacterCountWithSpaces(props.characterCountWithoutSpaces)
-    setWordCount(props.wordCount)
-    setSentenceCount(props.sentenceCount)
-    setLineCount(props.lineCount)
-  }, [props])
+  const toolBarItems = React.useMemo(
+    () => [
+      { label: 'Character count:', dataVar: characterCount },
+      { label: 'Character count with spaces:', dataVar: characterCountWithoutSpaces },
+      { label: 'Word count:', dataVar: wordCount },
+      { label: 'Sentence count:', dataVar: sentenceCount },
+      { label: 'Line count:', dataVar: lineCount }
+    ],
+    [characterCount, characterCountWithoutSpaces, wordCount, sentenceCount, lineCount]
+  )
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
