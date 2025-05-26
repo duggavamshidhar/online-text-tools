@@ -26,6 +26,15 @@ export default function WordFrequencyComponent() {
   const [wordFrequency, setWordFrequency] = useState<UpdateWordFrequencyProps[]>([])
   const toolBarItems = [
     {
+      label: 'Download as CSV',
+      onClick: () => {
+        downloadAsFile(
+          wordFrequency.map((item) => `${item.word},${item.count}`).join('\n'),
+          'word-frequency.csv'
+        )
+      }
+    },
+    {
       label: 'Download as text file',
       onClick: () => downloadAsFile(text)
     },

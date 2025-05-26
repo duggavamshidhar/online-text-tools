@@ -7,7 +7,7 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
-import { CaseSensitive } from 'lucide-react'
+import { WholeWord } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
 import * as React from 'react'
@@ -35,12 +35,12 @@ export default function WordFrequencyCounterComponent({
             size="icon"
             className="mx-0.5 flex w-auto cursor-pointer items-center gap-1 p-2"
           >
-            <CaseSensitive size="28" />
+            <WholeWord size="28" />
             <Separator orientation="vertical" />
             <span className="font-normal">Word Frequency Count</span>
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="max-h-[60vh] overflow-y-auto sm:max-w-[425px]">
           <DialogTitle>Word Frequency count</DialogTitle>
           <DialogHeader>
             <DialogDescription asChild>
