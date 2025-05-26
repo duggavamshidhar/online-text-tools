@@ -5,6 +5,6 @@ export const metadata: Metadata = {
   title: 'Base64 Encode and Decode'
 }
 
-export default function Base64EncodeAndDecode() {
+export default function Base64EncodeAndDecodePage() {
   return <Base64EncodeAndDecodeComponent />
 }

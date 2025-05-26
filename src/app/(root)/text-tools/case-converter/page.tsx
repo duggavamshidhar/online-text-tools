@@ -5,6 +5,6 @@ export const metadata: Metadata = {
   title: 'Case Converter'
 }
 
-export default function CaseConverter() {
+export default function CaseConverterPage() {
   return <CaseConverterComponent />
 }

@@ -38,6 +38,11 @@ export function AppSidebar() {
       title: 'Base64 Encode and Decode',
       url: 'base64-encode-and-decode',
       targetBlank: false
+    },
+    {
+      title: 'Word Frequency',
+      url: 'word-frequency',
+      targetBlank: false
     }
   ]
 
