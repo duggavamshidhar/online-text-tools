@@ -6,45 +6,58 @@ A modern web application built with Next.js that provides various text manipulat
 
 - **Notepad**: A text editor with the following capabilities:
 
-  - Text editing with a clean interface
-  - Character count (with and without spaces)
-  - Word count
-  - Sentence count
-  - Line count
-  - Copy text to clipboard
-  - Cut text to clipboard
-  - Download text as a text file
-  - Reset text area
+    - Text editing with a clean interface
+    - Character count (with and without spaces)
+    - Word count
+    - Sentence count
+    - Line count
+    - Copy text to clipboard
+    - Cut text to clipboard
+    - Download text as a text file
+    - Reset text area
 
 - **Case Converter**: Convert text between different cases:
 
-  - Uppercase conversion
-  - Lowercase conversion
-  - Title Case conversion
-  - Sentence case conversion
-  - Toggle case conversion
-  - Download the converted text as a text file
+    - Uppercase conversion
+    - Lowercase conversion
+    - Title Case conversion
+    - Sentence case conversion
+    - Toggle case conversion
+    - Download the converted text as a text file
 
 - **Base64 Encode and Decode**: Convert text to and from Base64 encoding:
 
-  - Encode text to Base64
-  - Decode Base64 to text
-  - Copy encoded/decoded text to clipboard
-  - Download the encoded/decoded text as a text file
+    - Encode text to Base64
+    - Decode Base64 to text
+    - Copy encoded/decoded text to clipboard
+    - Download the encoded/decoded text as a text file
+
+- **Word Frequency**: Analyze the frequency of words in a text:
+
+    - Count occurrences of each word in the text
+    - Display word frequency in a sortable list
+    - Character count, word count, sentence count, and line count
+    - Copy text to clipboard
+    - Cut text to clipboard
+    - Download word frequency data as a CSV file
+    - Download text as a text file
+    - Reset text area
 
 ## Tech Stack
 
-- [Next.js](https://nextjs.org) - React framework
-- [React](https://react.dev) - UI library
+- [Next.js](https://nextjs.org) - React framework (version 15.3.1)
+- [React](https://react.dev) - UI library (version 19.0.0)
 - [TypeScript](https://www.typescriptlang.org) - Type-safe JavaScript
 - [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
 - [Radix UI](https://www.radix-ui.com) - Unstyled, accessible UI components
+- [Lucide React](https://lucide.dev) - Icon library
+- [next-themes](https://github.com/pacocoursey/next-themes) - Theme management for Next.js
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (version 18 or higher)
+- Node.js (version 18 or higher, Docker configuration uses Node.js 22)
 - npm, yarn, pnpm, or bun
 
 ### Installation
