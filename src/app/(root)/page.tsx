@@ -1,4 +1,4 @@
-import NotepadComponent from '@/components/notepad-component'
+import NotepadComponent from '@/components/notepad-components/notepad-component'
 
 export default function Page() {
   return <NotepadComponent />

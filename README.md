@@ -175,4 +175,3 @@ To learn more about the technologies used in this project:
 - [Vercel Speed Insights](https://vercel.com/docs/speed-insights/overview) - learn about performance monitoring.
 - [Docker Documentation](https://docs.docker.com/) - learn about Docker and containerization.
 - [Node.js Documentation](https://nodejs.org/en/docs) - learn about Node.js.
--

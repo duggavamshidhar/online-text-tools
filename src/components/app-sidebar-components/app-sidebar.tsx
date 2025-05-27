@@ -5,8 +5,8 @@ import {
   SidebarGroupLabel,
   SidebarMenu
 } from '@/components/ui/sidebar'
-import SubmenuCollapsibleComponent from '@/components/submenu-collapsible-component'
-import SubmenuComponent from '@/components/submenu-component'
+import SubmenuCollapsibleComponent from '@/components/app-sidebar-components/submenu-collapsible-component'
+import SubmenuComponent from '@/components/app-sidebar-components/submenu-component'
 
 interface MenuItems {
   title: string

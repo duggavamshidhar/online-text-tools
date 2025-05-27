@@ -1,4 +1,4 @@
-import { UpdateWordFrequencyProps } from '@/components/word-frequency-counter-component'
+import { UpdateWordFrequencyProps } from '@/components/word-frequency-components/word-frequency-counter-component'
 
 export function handleCharacterCount(text: string): number {
   return text.length

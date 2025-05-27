@@ -1,4 +1,4 @@
-import { AppSidebar } from '@/components/app-sidebar'
+import { AppSidebar } from '@/components/app-sidebar-components/app-sidebar'
 import { ModeToggle } from '@/components/ui/mode-toggle'
 import { Separator } from '@/components/ui/separator'
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'

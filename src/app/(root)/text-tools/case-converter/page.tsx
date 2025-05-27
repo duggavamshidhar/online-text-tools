@@ -1,4 +1,4 @@
-import CaseConverterComponent from '@/components/case-converter-component'
+import CaseConverterComponent from '@/components/case-converter-components/case-converter-component'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

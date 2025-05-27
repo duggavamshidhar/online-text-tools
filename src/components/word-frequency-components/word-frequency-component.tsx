@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react'
 import { Textarea } from '@/components/ui/textarea'
-import ToolbarComponent from '@/components/toolbar-component'
+import ToolbarComponent from '@/components/toolbar-components/toolbar-component'
 import { copyToClipboard, cutToClipboard, downloadAsFile, resetTextArea } from '@/modules/clipboard'
 import {
   handleCharacterCount,
@@ -12,11 +12,11 @@ import {
   handleWordCount,
   updateWordFrequency
 } from '@/modules/textAnalysis'
-import ToolsComponent from '@/components/tools-component'
-import CharacterCountComponent from '@/components/character-count-component'
+import ToolsComponent from '@/components/toolbar-components/tools-component'
+import CharacterCountComponent from '@/components/toolbar-components/character-count-component'
 import WordFrequencyCounterComponent, {
   UpdateWordFrequencyProps
-} from '@/components/word-frequency-counter-component'
+} from '@/components/word-frequency-components/word-frequency-counter-component'
 
 export default function WordFrequencyComponent() {
   const [text, setText] = useState('')

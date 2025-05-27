@@ -1,19 +1,13 @@
 'use client'
 
-import ToolbarComponent from '@/components/toolbar-component'
-import { Textarea } from '@/components/ui/textarea'
-import CharacterCountComponent from '@/components/character-count-component'
+import ToolbarComponent from '@/components/toolbar-components/toolbar-component'
+import CharacterCountComponent from '@/components/toolbar-components/character-count-component'
 import {
-  changeTextToAlternatingCase,
-  changeTextToCapitalizedCase,
-  changeTextToInverseCase,
-  changeTextToLowerCase,
-  changeTextToSentenceCase,
-  changeTextToTitleCase,
-  changeTextToUpperCase,
   copyToClipboard,
   cutToClipboard,
+  decodeFromBase64,
   downloadAsFile,
+  encodeToBase64,
   handleCharacterCount,
   handleCharacterCountWithoutSpaces,
   handleLineCount,
@@ -21,40 +15,25 @@ import {
   handleWordCount,
   resetTextArea
 } from '@/modules/global'
-import React, { useState, useMemo } from 'react'
-import ToolsComponent from '@/components/tools-component'
+import ToolsComponent from '@/components/toolbar-components/tools-component'
+import { Textarea } from '@/components/ui/textarea'
+import React, { useMemo, useState } from 'react'
 
-export default function CaseConverterComponent() {
+export default function Base64EncodeAndDecodeComponent() {
   const [text, setText] = useState('')
   const toolBarItems = useMemo(
     () => [
       {
-        label: 'Sentence Case',
-        onClick: () => setText(changeTextToSentenceCase(text))
+        label: 'Encode to Base64',
+        onClick: () => {
+          setText(encodeToBase64(text))
+        }
       },
       {
-        label: 'Uppercase',
-        onClick: () => setText(changeTextToUpperCase(text))
-      },
-      {
-        label: 'Lowercase',
-        onClick: () => setText(changeTextToLowerCase(text))
-      },
-      {
-        label: 'Capitalized Case',
-        onClick: () => setText(changeTextToCapitalizedCase(text))
-      },
-      {
-        label: 'Title Case',
-        onClick: () => setText(changeTextToTitleCase(text))
-      },
-      {
-        label: 'Alternating Case',
-        onClick: () => setText(changeTextToAlternatingCase(text))
-      },
-      {
-        label: 'Inverse Case',
-        onClick: () => setText(changeTextToInverseCase(text))
+        label: 'Decode from Base64',
+        onClick: () => {
+          setText(decodeFromBase64(text))
+        }
       },
       {
         label: 'Download as text file',
@@ -82,7 +61,7 @@ export default function CaseConverterComponent() {
   )
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-y-2">
-      <div className="px-0.5 text-2xl font-semibold">Case Converter</div>
+      <div className="px-0.5 text-2xl font-semibold">Base64 Encode and Decode</div>
       <div className="flex flex-col gap-y-1">
         <ToolbarComponent>
           <CharacterCountComponent

@@ -1,7 +1,7 @@
 'use client'
 
 import { Textarea } from '@/components/ui/textarea'
-import React, { useState, useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import {
   copyToClipboard,
   cutToClipboard,
@@ -13,9 +13,9 @@ import {
   handleWordCount,
   resetTextArea
 } from '@/modules/global'
-import CharacterCountComponent from '@/components/character-count-component'
-import ToolbarComponent from '@/components/toolbar-component'
-import ToolsComponent from '@/components/tools-component'
+import CharacterCountComponent from '@/components/toolbar-components/character-count-component'
+import ToolbarComponent from '@/components/toolbar-components/toolbar-component'
+import ToolsComponent from '@/components/toolbar-components/tools-component'
 
 export default function NotepadComponent() {
   const [text, setText] = useState('')
