@@ -39,6 +39,11 @@ const menuToolsItems: MenuItems[] = [
     targetBlank: false
   },
   {
+    title: 'MD5 Hash Generator',
+    url: 'md5-hash-generator',
+    targetBlank: false
+  },
+  {
     title: 'Word Frequency',
     url: 'word-frequency',
     targetBlank: false

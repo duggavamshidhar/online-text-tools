@@ -1,4 +1,5 @@
 import { toast } from 'sonner'
+import md5 from 'md5'
 
 function validateText(text: string, errorMessage: string): boolean {
   if (!text.trim()) {
@@ -156,6 +157,21 @@ export function decodeFromBase64(text: string): string {
     return decodedText
   } catch {
     toast.error('Invalid Base64 string.')
+    return text
+  }
+}
+
+export function md5HashGenerator(text: string): string {
+  if (!validateText(text, 'Please enter some text to generate MD5 hash.')) {
+    return text
+  }
+
+  try {
+    const hash = md5(text)
+    toast.success('MD5 hash has been generated successfully.')
+    return hash
+  } catch {
+    toast.error('Error generating MD5 hash.')
     return text
   }
 }
