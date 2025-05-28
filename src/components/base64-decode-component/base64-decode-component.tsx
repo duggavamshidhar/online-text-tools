@@ -7,7 +7,6 @@ import {
   cutToClipboard,
   decodeFromBase64,
   downloadAsFile,
-  encodeToBase64,
   handleCharacterCount,
   handleCharacterCountWithoutSpaces,
   handleLineCount,
@@ -18,23 +17,12 @@ import {
 import ToolsComponent from '@/components/toolbar-components/tools-component'
 import { Textarea } from '@/components/ui/textarea'
 import React, { useMemo, useState } from 'react'
+import { Button } from '@/components/ui/button'
 
-export default function Base64EncodeAndDecodeComponent() {
+export default function Base64DecodeComponent() {
   const [text, setText] = useState('')
   const toolBarItems = useMemo(
     () => [
-      {
-        label: 'Encode to Base64',
-        onClick: () => {
-          setText(encodeToBase64(text))
-        }
-      },
-      {
-        label: 'Decode from Base64',
-        onClick: () => {
-          setText(decodeFromBase64(text))
-        }
-      },
       {
         label: 'Download as text file',
         onClick: () => downloadAsFile(text)
@@ -61,7 +49,7 @@ export default function Base64EncodeAndDecodeComponent() {
   )
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-y-2">
-      <div className="px-0.5 text-2xl font-semibold">Base64 Encode and Decode</div>
+      <div className="px-0.5 text-2xl font-semibold">Base64 Decode</div>
       <div className="flex flex-col gap-y-1">
         <ToolbarComponent>
           <CharacterCountComponent
@@ -71,7 +59,17 @@ export default function Base64EncodeAndDecodeComponent() {
             sentenceCount={handleSentenceCount(text)}
             lineCount={handleLineCount(text)}
           />
-          <ToolsComponent items={toolBarItems} />
+          <div className="flex items-center gap-x-1">
+            <Button
+              className="w-auto cursor-pointer px-2 py-1"
+              onClick={() => setText(decodeFromBase64(text))}
+              variant="outline"
+              size="icon"
+            >
+              Decode from Base64
+            </Button>
+            <ToolsComponent items={toolBarItems} />
+          </div>
         </ToolbarComponent>
         <Textarea
           className="min-h-[400px]"

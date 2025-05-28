@@ -1,49 +1,55 @@
 'use client'
 
-import { useState } from 'react'
 import ToolbarComponent from '@/components/toolbar-components/toolbar-component'
-import ToolsComponent from '@/components/toolbar-components/tools-component'
 import CharacterCountComponent from '@/components/toolbar-components/character-count-component'
 import {
+  copyToClipboard,
+  cutToClipboard,
+  downloadAsFile,
+  encodeToBase64,
   handleCharacterCount,
   handleCharacterCountWithoutSpaces,
   handleLineCount,
   handleSentenceCount,
-  handleWordCount
-} from '@/modules/textAnalysis'
+  handleWordCount,
+  resetTextArea
+} from '@/modules/global'
+import ToolsComponent from '@/components/toolbar-components/tools-component'
 import { Textarea } from '@/components/ui/textarea'
-import { copyToClipboard, cutToClipboard, downloadAsFile, resetTextArea } from '@/modules/clipboard'
-import { md5HashGenerator } from '@/modules/textTransformation'
+import React, { useMemo, useState } from 'react'
 import { Button } from '@/components/ui/button'
 
-export default function MD5HashGeneratorComponent() {
+export default function Base64EncodeComponent() {
   const [text, setText] = useState('')
-  const toolBarItems = [
-    {
-      label: 'Download as text file',
-      onClick: () => downloadAsFile(text)
-    },
-    {
-      label: 'Cut',
-      onClick: () => {
-        cutToClipboard(text)
-        setText('')
+  const toolBarItems = useMemo(
+    () => [
+      {
+        label: 'Download as text file',
+        onClick: () => downloadAsFile(text)
+      },
+      {
+        label: 'Cut',
+        onClick: () => {
+          cutToClipboard(text)
+          setText('')
+        }
+      },
+      {
+        label: 'Copy',
+        onClick: () => copyToClipboard(text)
+      },
+      {
+        label: 'Reset',
+        onClick: () => {
+          setText(resetTextArea(text))
+        }
       }
-    },
-    {
-      label: 'Copy',
-      onClick: () => copyToClipboard(text)
-    },
-    {
-      label: 'Reset',
-      onClick: () => {
-        setText(resetTextArea(text))
-      }
-    }
-  ]
+    ],
+    [text]
+  )
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-y-2">
-      <div className="px-0.5 text-2xl font-semibold">MD5 Hash Generator</div>
+      <div className="px-0.5 text-2xl font-semibold">Base64 Encode</div>
       <div className="flex flex-col gap-y-1">
         <ToolbarComponent>
           <CharacterCountComponent
@@ -56,12 +62,13 @@ export default function MD5HashGeneratorComponent() {
           <div className="flex items-center gap-x-1">
             <Button
               className="w-auto cursor-pointer px-2 py-1"
-              onClick={() => setText(md5HashGenerator(text))}
+              onClick={() => setText(encodeToBase64(text))}
               variant="outline"
               size="icon"
             >
-              Generate MD5 Hash
+              Encode to Base64
             </Button>
+
             <ToolsComponent items={toolBarItems} />
           </div>
         </ToolbarComponent>

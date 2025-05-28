@@ -67,17 +67,17 @@ export default function WordFrequencyComponent() {
       <div className="px-0.5 text-2xl font-semibold">Word Frequency</div>
       <div className="flex flex-col gap-y-1">
         <ToolbarComponent>
-          <div className="flex items-center">
-            <CharacterCountComponent
-              characterCount={handleCharacterCount(text)}
-              characterCountWithoutSpaces={handleCharacterCountWithoutSpaces(text)}
-              wordCount={handleWordCount(text)}
-              sentenceCount={handleSentenceCount(text)}
-              lineCount={handleLineCount(text)}
-            />
+          <CharacterCountComponent
+            characterCount={handleCharacterCount(text)}
+            characterCountWithoutSpaces={handleCharacterCountWithoutSpaces(text)}
+            wordCount={handleWordCount(text)}
+            sentenceCount={handleSentenceCount(text)}
+            lineCount={handleLineCount(text)}
+          />
+          <div className="flex items-center gap-x-1">
             <WordFrequencyCounterComponent wordFrequencyData={wordFrequency} />
+            <ToolsComponent items={toolBarItems} />
           </div>
-          <ToolsComponent items={toolBarItems} />
         </ToolbarComponent>
         <Textarea
           className="min-h-[400px]"

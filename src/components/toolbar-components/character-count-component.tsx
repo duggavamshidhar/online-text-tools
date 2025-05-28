@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { useState, useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -49,8 +49,8 @@ export default function CharacterCountComponent({
           className="mx-0.5 flex w-auto cursor-pointer items-center gap-1 p-2"
         >
           <CaseSensitive size="28" />
-          <Separator orientation="vertical" />
-          <span className="font-normal">Character Count</span>
+          <Separator orientation="vertical" className="max-sm:hidden" />
+          <span className="font-normal max-sm:hidden">Character Count</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

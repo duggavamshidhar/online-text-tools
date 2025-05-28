@@ -29,11 +29,11 @@ export default function ToolsComponent({ items }: ToolsProps) {
         <Button
           variant="outline"
           size="icon"
-          className="mx-0.5 flex w-auto cursor-pointer items-center gap-1 p-2"
+          className="flex w-auto cursor-pointer items-center gap-1 p-2"
         >
           <Wrench size="28" />
-          <Separator orientation="vertical" />
-          <span className="font-normal">Tools</span>
+          <Separator orientation="vertical" className="max-sm:hidden" />
+          <span className="font-normal max-sm:hidden">Tools</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

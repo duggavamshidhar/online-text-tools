@@ -34,8 +34,13 @@ const menuToolsItems: MenuItems[] = [
     targetBlank: false
   },
   {
-    title: 'Base64 Encode and Decode',
-    url: 'base64-encode-and-decode',
+    title: 'Base64 Encode',
+    url: 'base64-encode',
+    targetBlank: false
+  },
+  {
+    title: 'Base64 Decode',
+    url: 'base64-decode',
     targetBlank: false
   },
   {
