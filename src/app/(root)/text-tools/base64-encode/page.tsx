@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import Base64EncodeComponent from '@/components/base64-encode-component/base64-encode-component'
+import Base64EncodeComponent from '@/components/base64-encode-components/base64-encode-component'
 
 export const metadata: Metadata = {
   title: 'Base64 Encode'

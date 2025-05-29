@@ -29,11 +29,6 @@ const contactItems: MenuItems[] = [
 
 const menuToolsItems: MenuItems[] = [
   {
-    title: 'Case Converter',
-    url: 'case-converter',
-    targetBlank: false
-  },
-  {
     title: 'Base64 Encode',
     url: 'base64-encode',
     targetBlank: false
@@ -46,6 +41,41 @@ const menuToolsItems: MenuItems[] = [
   {
     title: 'MD5 Hash Generator',
     url: 'md5-hash-generator',
+    targetBlank: false
+  },
+  {
+    title: 'Sentence Case Converter',
+    url: 'sentence-case-converter',
+    targetBlank: false
+  },
+  {
+    title: 'Upper Case Converter',
+    url: 'upper-case-converter',
+    targetBlank: false
+  },
+  {
+    title: 'Lower Case Converter',
+    url: 'lower-case-converter',
+    targetBlank: false
+  },
+  {
+    title: 'Capitalized Case Converter',
+    url: 'capitalized-case-converter',
+    targetBlank: false
+  },
+  {
+    title: 'Title Case Converter',
+    url: 'title-case-converter',
+    targetBlank: false
+  },
+  {
+    title: 'Alternating Case Converter',
+    url: 'alternating-case-converter',
+    targetBlank: false
+  },
+  {
+    title: 'Inverse Case Converter',
+    url: 'inverse-case-converter',
     targetBlank: false
   },
   {
