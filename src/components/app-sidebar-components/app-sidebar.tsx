@@ -49,6 +49,11 @@ const menuToolsItems: MenuItems[] = [
     targetBlank: false
   },
   {
+    title: 'SHA256 Hash Generator',
+    url: 'sha256-hash-generator',
+    targetBlank: false
+  },
+  {
     title: 'Sentence Case Converter',
     url: 'sentence-case-converter',
     targetBlank: false

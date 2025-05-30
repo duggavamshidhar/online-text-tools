@@ -13,10 +13,10 @@ import {
 } from '@/modules/textAnalysis'
 import { Textarea } from '@/components/ui/textarea'
 import { copyToClipboard, cutToClipboard, downloadAsFile, resetTextArea } from '@/modules/clipboard'
-import { sha1HashGenerator } from '@/modules/textTransformation'
+import { sha256HashGenerator } from '@/modules/textTransformation'
 import { Button } from '@/components/ui/button'
 
-export default function SHA1HashGeneratorComponent() {
+export default function SHA256HashGeneratorComponent() {
   const [text, setText] = useState('')
   const toolBarItems = useMemo(
     () => [
@@ -46,7 +46,7 @@ export default function SHA1HashGeneratorComponent() {
   )
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-y-2">
-      <div className="px-0.5 text-2xl font-semibold">SHA1 Hash Generator</div>
+      <div className="px-0.5 text-2xl font-semibold">SHA-256 Hash Generator</div>
       <div className="flex flex-col gap-y-1">
         <ToolbarComponent>
           <CharacterCountComponent
@@ -59,11 +59,11 @@ export default function SHA1HashGeneratorComponent() {
           <div className="flex items-center gap-x-1">
             <Button
               className="w-auto cursor-pointer px-2 py-1"
-              onClick={async () => setText(await sha1HashGenerator(text))}
+              onClick={async () => setText(await sha256HashGenerator(text))}
               variant="outline"
               size="icon"
             >
-              Generate SHA1 Hash
+              Generate SHA-256 Hash
             </Button>
             <ToolsComponent items={toolBarItems} />
           </div>
