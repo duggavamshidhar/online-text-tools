@@ -44,13 +44,13 @@ const menuToolsItems: MenuItems[] = [
     targetBlank: false
   },
   {
-    title: 'SHA1 Hash Generator',
-    url: 'sha1-hash-generator',
+    title: 'SHA-1 Hash Generator',
+    url: 'sha-1-hash-generator',
     targetBlank: false
   },
   {
-    title: 'SHA256 Hash Generator',
-    url: 'sha256-hash-generator',
+    title: 'SHA-256 Hash Generator',
+    url: 'sha-256-hash-generator',
     targetBlank: false
   },
   {
