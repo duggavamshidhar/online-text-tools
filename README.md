@@ -1,5 +1,8 @@
 # Online Text Tools
 
+[![Production Deployment](https://github.com/duggavamshidhar/online-text-tools/actions/workflows/production.yml/badge.svg)](https://github.com/duggavamshidhar/online-text-tools/actions/workflows/production.yml)
+[![Preview Deployment](https://github.com/duggavamshidhar/online-text-tools/actions/workflows/preview.yml/badge.svg)](https://github.com/duggavamshidhar/online-text-tools/actions/workflows/preview.yml)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

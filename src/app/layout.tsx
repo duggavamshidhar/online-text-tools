@@ -4,6 +4,8 @@ import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import React from 'react'
 
+import { ThemeProvider } from '@/components/theme-provider'
+
 const poppins = Poppins({
   subsets: ['latin'],
   display: 'swap',
@@ -18,8 +20,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={`${poppins.className} antialiased`}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${poppins.className} antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
