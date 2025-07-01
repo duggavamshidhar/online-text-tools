@@ -1,3 +1,9 @@
+import MainComponent from '@/components/main-component'
+
 export default function Home() {
-  return <>Home</>
+  return (
+    <>
+      <MainComponent title="Notepad" />
+    </>
+  )
 }
