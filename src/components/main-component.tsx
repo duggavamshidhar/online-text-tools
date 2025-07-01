@@ -6,10 +6,10 @@ import ToolsComponent from '@/components/tools-component'
 
 interface MainComponentProps {
   title: string
-  customTool?: JSX.Element
+  component?: JSX.Element
 }
 
-export default function MainComponent({ title, customTool }: MainComponentProps) {
+export default function MainComponent({ title, component }: MainComponentProps) {
   return (
     <>
       <div className="mx-auto flex max-w-4xl flex-col gap-y-2">
@@ -18,7 +18,7 @@ export default function MainComponent({ title, customTool }: MainComponentProps)
           <div className="flex w-full justify-between gap-1 overflow-x-auto">
             <CharacterCountComponent />
             <div className="flex items-center gap-x-1">
-              {customTool}
+              {component}
               <ToolsComponent />
             </div>
           </div>

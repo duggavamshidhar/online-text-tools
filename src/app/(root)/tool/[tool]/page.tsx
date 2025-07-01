@@ -11,6 +11,7 @@ import SHA1HashGeneratorComponent from '@/components/text-tool-components/sha-1-
 import SHA256HashGeneratorComponent from '@/components/text-tool-components/sha-256-hash-generator-component'
 import TitleCaseConverterComponent from '@/components/text-tool-components/title-case-converter-component'
 import UpperCaseConverterComponent from '@/components/text-tool-components/upper-case-converter-component'
+import WordFrequencyComponent from '@/components/text-tool-components/word-frequency-component'
 
 export async function generateMetadata({ params }: { params: Promise<{ tool: string }> }) {
   const { tool } = await params
@@ -63,7 +64,10 @@ export async function generateMetadata({ params }: { params: Promise<{ tool: str
       return {
         title: 'Upper Case Converter'
       }
-
+    case 'word-frequency':
+      return {
+        title: 'Word Frequency'
+      }
     default:
       return {
         title: 'Notepad'
@@ -78,60 +82,62 @@ export default async function Page({ params }: { params: Promise<{ tool: string 
       return (
         <MainComponent
           title="Alternating Case Converter"
-          customTool={<AlternatingCaseConverterComponent />}
+          component={<AlternatingCaseConverterComponent />}
         />
       )
     case 'base64-decode':
-      return <MainComponent title="Base64 Decode" customTool={<Base64DecodeComponent />} />
+      return <MainComponent title="Base64 Decode" component={<Base64DecodeComponent />} />
     case 'base64-encode':
-      return <MainComponent title="Base64 Encode" customTool={<Base64EncodeComponent />} />
+      return <MainComponent title="Base64 Encode" component={<Base64EncodeComponent />} />
 
     case 'capitalized-case-converter':
       return (
         <MainComponent
           title="Capitalized Case Converter"
-          customTool={<CapitalizedCaseConverterComponent />}
+          component={<CapitalizedCaseConverterComponent />}
         />
       )
     case 'inverse-case-converter':
       return (
         <MainComponent
           title="Inverse Case Converter"
-          customTool={<InverseCaseConverterComponent />}
+          component={<InverseCaseConverterComponent />}
         />
       )
     case 'lower-case-converter':
       return (
-        <MainComponent title="Lower Case Converter" customTool={<LowerCaseConverterComponent />} />
+        <MainComponent title="Lower Case Converter" component={<LowerCaseConverterComponent />} />
       )
     case 'md5-hash-generator':
-      return <MainComponent title="MD5 Hash Generator" customTool={<MD5HashGeneratorComponent />} />
+      return <MainComponent title="MD5 Hash Generator" component={<MD5HashGeneratorComponent />} />
     case 'sentence-case-converter':
       return (
         <MainComponent
           title="Sentence Case Converter"
-          customTool={<SentenceCaseConverterComponent />}
+          component={<SentenceCaseConverterComponent />}
         />
       )
     case 'sha-1-hash-generator':
       return (
-        <MainComponent title="SHA-1 Hash Generator" customTool={<SHA1HashGeneratorComponent />} />
+        <MainComponent title="SHA-1 Hash Generator" component={<SHA1HashGeneratorComponent />} />
       )
     case 'sha-256-hash-generator':
       return (
         <MainComponent
           title="SHA-256 Hash Generator"
-          customTool={<SHA256HashGeneratorComponent />}
+          component={<SHA256HashGeneratorComponent />}
         />
       )
     case 'title-case-converter':
       return (
-        <MainComponent title="Title Case Converter" customTool={<TitleCaseConverterComponent />} />
+        <MainComponent title="Title Case Converter" component={<TitleCaseConverterComponent />} />
       )
     case 'upper-case-converter':
       return (
-        <MainComponent title="Upper Case Converter" customTool={<UpperCaseConverterComponent />} />
+        <MainComponent title="Upper Case Converter" component={<UpperCaseConverterComponent />} />
       )
+    case 'word-frequency':
+      return <MainComponent title="Word Frequency" component={<WordFrequencyComponent />} />
     default:
       return <MainComponent title="Notepad" />
   }

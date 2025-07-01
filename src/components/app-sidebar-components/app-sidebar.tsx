@@ -87,6 +87,11 @@ const menuToolsItems: MenuItems[] = [
     title: 'Inverse Case Converter',
     url: 'inverse-case-converter',
     targetBlank: false
+  },
+  {
+    title: 'Word Frequency',
+    url: 'word-frequency',
+    targetBlank: false
   }
 ]
 

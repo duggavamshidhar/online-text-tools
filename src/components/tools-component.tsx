@@ -21,7 +21,7 @@ interface ToolItems {
   onClick: () => void | string
 }
 
-export default function ToolsComponent({ extraTool }: { extraTool?: ToolItems }) {
+export default function ToolsComponent() {
   const [open, setOpen] = useState(false)
   const { text, setText } = useTextFieldStore()
   const toolItems: ToolItems[] = useMemo(
@@ -46,10 +46,9 @@ export default function ToolsComponent({ extraTool }: { extraTool?: ToolItems })
         onClick: () => {
           setText(resetTextArea(text))
         }
-      },
-      ...(extraTool ? [extraTool] : [])
+      }
     ],
-    [text, setText, extraTool]
+    [text, setText]
   )
   return (
     <Dialog open={open} onOpenChange={setOpen}>
