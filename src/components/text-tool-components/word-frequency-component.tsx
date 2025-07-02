@@ -2,6 +2,7 @@
 
 import { WholeWord } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -54,10 +55,12 @@ export default function WordFrequencyCounterComponent() {
                     wordFrequency.map((item) => `${item.word},${item.count}`).join('\n'),
                     'word-frequency.csv'
                   )
+                } else {
+                  toast.error('Please enter some text to download as a CSV file.')
                 }
               }}
               type="button"
-              className="w-auto p-2"
+              className="w-auto cursor-pointer p-2"
               variant="secondary"
             >
               Download as CSV
