@@ -50,16 +50,16 @@ WORKDIR /app
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN adduser --system --uid 1001 nextjs
+RUN adduser --system --uid 1001 admin
 
 COPY --from=deps /app/package.json ./package.json
 COPY --from=deps /app/node_modules ./node_modules/
 COPY --from=builder /app/.next/ ./.next/
 COPY --from=builder /app/public/ ./public/
 
-RUN chown -R nextjs /app
+RUN chown -R admin /app
 
-USER nextjs
+USER admin
 
 EXPOSE 3000
 
