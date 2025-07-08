@@ -2,6 +2,7 @@
 
 import { WholeWord } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { toast } from 'sonner'
 
 import { Badge } from '@/components/ui/badge'
@@ -17,7 +18,7 @@ import {
 import { Separator } from '@/components/ui/separator'
 import { downloadAsFile } from '@/modules/tools'
 import { updateWordFrequency } from '@/modules/word-frequency'
-import { useTextFieldStore } from '@/store/text-field-store'
+import { RootState } from '@/store/store'
 
 export interface UpdateWordFrequencyProps {
   word: string
@@ -26,7 +27,7 @@ export interface UpdateWordFrequencyProps {
 
 export default function WordFrequencyCounterComponent() {
   const [open, setOpen] = useState(false)
-  const { text } = useTextFieldStore()
+  const text = useSelector((state: RootState) => state.text.text)
   const [wordFrequency, setWordFrequency] = useState<UpdateWordFrequencyProps[]>([])
   useEffect(() => {
     setWordFrequency(updateWordFrequency(text))

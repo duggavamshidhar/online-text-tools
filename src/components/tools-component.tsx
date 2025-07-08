@@ -2,6 +2,7 @@
 
 import { Wrench } from 'lucide-react'
 import { useMemo, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -14,7 +15,8 @@ import {
 } from '@/components/ui/dialog'
 import { Separator } from '@/components/ui/separator'
 import { copyToClipboard, cutToClipboard, downloadAsFile, resetTextArea } from '@/modules/tools'
-import { useTextFieldStore } from '@/store/text-field-store'
+import { RootState } from '@/store/store'
+import { setText } from '@/store/text-slice'
 
 interface ToolItems {
   label: string
@@ -23,7 +25,8 @@ interface ToolItems {
 
 export default function ToolsComponent() {
   const [open, setOpen] = useState(false)
-  const { text, setText } = useTextFieldStore()
+  const dispatch = useDispatch()
+  const text = useSelector((state: RootState) => state.text.text)
   const toolItems: ToolItems[] = useMemo(
     () => [
       {
@@ -34,7 +37,7 @@ export default function ToolsComponent() {
         label: 'Cut',
         onClick: () => {
           cutToClipboard(text)
-          setText('')
+          dispatch(setText(''))
         }
       },
       {
@@ -44,11 +47,11 @@ export default function ToolsComponent() {
       {
         label: 'Reset',
         onClick: () => {
-          setText(resetTextArea(text))
+          dispatch(setText(resetTextArea(text)))
         }
       }
     ],
-    [text, setText]
+    [text, dispatch]
   )
   return (
     <Dialog open={open} onOpenChange={setOpen}>

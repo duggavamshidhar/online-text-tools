@@ -198,10 +198,10 @@ export async function sha256HashGenerator(text: string): Promise<string> {
     const hashBuffer = await crypto.subtle.digest('SHA-256', data)
     const hashArray = Array.from(new Uint8Array(hashBuffer))
     const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
-    toast.success('SHA-1 hash has been generated successfully.')
+    toast.success('SHA-256 hash has been generated successfully.')
     return hashHex
   } catch {
-    toast.error('Error generating SHA-1 hash.')
+    toast.error('Error generating SHA-256 hash.')
     return text
   }
 }

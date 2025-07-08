@@ -2,6 +2,7 @@
 
 import { CaseSensitive } from 'lucide-react'
 import { useMemo, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -21,11 +22,11 @@ import {
   handleSentenceCount,
   handleWordCount
 } from '@/modules/character-count'
-import { useTextFieldStore } from '@/store/text-field-store'
+import { RootState } from '@/store/store'
 
 export default function CharacterCountComponent() {
   const [open, setOpen] = useState(false)
-  const { text } = useTextFieldStore()
+  const text = useSelector((state: RootState) => state.text.text)
 
   const toolBarItems = useMemo(
     () => [
