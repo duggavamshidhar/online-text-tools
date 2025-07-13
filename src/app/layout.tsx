@@ -15,7 +15,16 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: { default: 'Online Text Tools', template: '%s | Online Text Tools' },
   description:
-    'A comprehensive collection of free online text tools to help you manipulate, format, and analyze text content quickly and easily.'
+    'A comprehensive collection of free online text tools to help you manipulate, format, and analyze text content quickly and easily.',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: `https://${process.env.DOMAIN_NAME}/`,
+    title: { default: 'Online Text Tools', template: '%s | Online Text Tools' },
+    description:
+      'A comprehensive collection of free online text tools to help you manipulate, format, and analyze text content quickly and easily.',
+    siteName: 'Online Text Tools'
+  }
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
