@@ -4,9 +4,9 @@ import ToolsComponent from '@/components/tools-component'
 export default function MainComponent({ title, component }) {
   return (
     <>
-      <div className="mx-auto p-2 flex max-w-4xl flex-col gap-y-1">
+      <div className="mx-auto flex max-w-4xl flex-col gap-y-1 p-2">
         <div className="text-2xl font-semibold">{title}</div>
-        <div className="flex items-center w-full justify-between gap-1">
+        <div className="flex w-full items-center justify-between gap-1">
           <div>{component}</div>
           <>
             <ToolsComponent />

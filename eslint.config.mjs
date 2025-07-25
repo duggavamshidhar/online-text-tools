@@ -27,7 +27,8 @@ const eslintConfig = [
           printWidth: 100,
           semi: false,
           singleQuote: true,
-          trailingComma: 'none'
+          trailingComma: 'none',
+          plugins: ['prettier-plugin-tailwindcss']
         }
       ],
       'simple-import-sort/imports': 'error',
