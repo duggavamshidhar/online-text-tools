@@ -1,5 +1,7 @@
 # Online Text Tools
 
+[![Action Status](https://github.com/duggavamshidhar/online-text-tools/actions/workflows/build.yml/badge.svg)](https://github.com/duggavamshidhar/online-text-tools/actions/workflows/build.yml)
+
 A web application built with React.js and Next.js, featuring real-time text editing, a responsive user interface,
 efficient state management, Dockerized deployment, and SEO optimization.
 
