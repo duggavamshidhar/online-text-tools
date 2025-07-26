@@ -1,5 +1,5 @@
 import { FlatCompat } from '@eslint/eslintrc'
-import eslintConfigPrettier from 'eslint-config-prettier'
+import eslintConfigPrettier from 'eslint-config-prettier/flat'
 import eslintPluginPrettier from 'eslint-plugin-prettier'
 import eslintPluginSimpleImportSort from 'eslint-plugin-simple-import-sort'
 import { dirname } from 'path'
@@ -13,28 +13,21 @@ const compat = new FlatCompat({
 })
 
 const eslintConfig = [
-  ...compat.extends('next/core-web-vitals'),
-  eslintConfigPrettier,
+  ...compat.config({
+    extends: ['next/core-web-vitals']
+  }),
   {
     plugins: {
       prettier: eslintPluginPrettier,
       'simple-import-sort': eslintPluginSimpleImportSort
     },
     rules: {
-      'prettier/prettier': [
-        'error',
-        {
-          printWidth: 100,
-          semi: false,
-          singleQuote: true,
-          trailingComma: 'none',
-          plugins: ['prettier-plugin-tailwindcss']
-        }
-      ],
+      'prettier/prettier': 'error',
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error'
     }
-  }
+  },
+  eslintConfigPrettier
 ]
 
 export default eslintConfig
