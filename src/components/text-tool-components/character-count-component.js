@@ -44,7 +44,7 @@ export default function CharacterCountComponent() {
           size="icon"
           className="mx-0.5 flex w-auto cursor-pointer items-center gap-1 p-2"
         >
-          <span className="font-normal max-sm:hidden">Character Count</span>
+          <span className="font-normal">Character Count</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

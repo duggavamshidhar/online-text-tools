@@ -10,7 +10,7 @@ export default function Layout({ children }) {
       <Header />
       <Separator />
       <main>
-        <div className="container mx-auto max-w-[1024px]">{children}</div>
+        <div className="container mx-auto max-w-[1100px]">{children}</div>
       </main>
       <Separator />
       <Footer />
