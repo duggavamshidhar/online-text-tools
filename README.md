@@ -53,13 +53,13 @@ cd online-text-tools
 - Build the Docker image:
 
 ```
-docker build -t online-text-tools .
+docker build --build-arg DOMAIN_NAME=localhost -t online-text-tools .
 ```
 
 - Run the Docker container:
 
 ```
-docker run -p 3000:3000 online-text-tools
+docker run -p 3000:3000 -e NODE_ENV=production online-text-tools
 ```
 
 - Open your browser and navigate to `http://localhost:3000` to view the application.
@@ -70,4 +70,4 @@ docker run -p 3000:3000 online-text-tools
 - **Responsive Design**: The application is fully responsive and works on various devices.
 - **State Management**: Efficient state management using Zustand.
 - **SEO Optimization**: The application is optimized for search engines.
-- **Dockerized Deployment**: Easily deploy the application using Docker.
+- **Dockerized Deployment**: Deploy the application using Docker.
