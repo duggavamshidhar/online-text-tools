@@ -3,6 +3,7 @@ import './globals.css'
 import { Poppins } from 'next/font/google'
 
 import { ThemeProvider } from '@/components/theme-provider'
+import { DOMAIN_NAME } from '@/config/env'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -17,7 +18,7 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: `https://${process.env.DOMAIN_NAME}/`,
+    url: `https://${DOMAIN_NAME}/`,
     title: { default: 'Online Text Tools', template: '%s | Online Text Tools' },
     description:
       'A comprehensive collection of free online text tools to help you manipulate, format, and analyze text content quickly and easily.',

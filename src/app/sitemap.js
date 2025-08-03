@@ -1,5 +1,6 @@
+import { DOMAIN_NAME } from '@/config/env'
+
 export default function sitemap() {
-  const domainName = process.env.DOMAIN_NAME
   const tools = [
     '',
     'sentence-case-converter',
@@ -18,7 +19,7 @@ export default function sitemap() {
     'word-frequency'
   ]
   return tools.map((item) => ({
-    url: `https://${domainName}/${item}`,
+    url: `https://${DOMAIN_NAME}/${item}`,
     lastModified: new Date().toISOString(),
     changeFrequency: 'weekly',
     priority: item === '' ? 1.0 : 0.9
