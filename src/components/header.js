@@ -106,7 +106,13 @@ export default function Header() {
               </Drawer>
             )}
             <Link href="/" className="flex items-center px-1">
-              <Image src="/logo.svg" alt="Online Text Tools Logo" width={35} height={35} priority />
+              <Image
+                src="/images/logo.svg"
+                alt="Online Text Tools Logo"
+                width={35}
+                height={35}
+                priority
+              />
             </Link>
             {!isMobile && (
               <NavigationMenu viewport={false}>
